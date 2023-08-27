@@ -1,0 +1,31 @@
+.SearchBar {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.SearchBar form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.SearchBar form button {
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+.SearchBar form button img {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+.SearchBar form input {
+  height: 1.5rem;
+  width: 13.375rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
+  color: #fff;
+}/*# sourceMappingURL=SearchBar.css.map */
