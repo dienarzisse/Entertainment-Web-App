@@ -1,19 +1,16 @@
 import Content from "./Content";
-import "./styling/css/Trending.css";
+import "./styling/css/Recommended.css";
+// Icon Imports
 import { nanoid } from "nanoid";
-function Trending({ trendingList }) {
+function ContentCategorySection({ trendingList, categoryTitle }) {
   console.log(trendingList);
-
   let list = null;
   if (trendingList) {
     list = trendingList.map((item) => {
       return (
         <Content
           key={nanoid()}
-          imgSrc={
-            `https://www.themoviedb.org/t/p/w220_and_h330_face` +
-            item.poster_path
-          }
+          imgSrc={`https://image.tmdb.org/t/p/original` + item.poster_path}
           year={new Date(item.release_date).getFullYear()}
           name={item.title}
           type={item.media_type}
@@ -24,15 +21,11 @@ function Trending({ trendingList }) {
   }
 
   return (
-    <div className="Trending">
-      <h1>Trending</h1>
-      <div className="ScrollContainer">
-        <div className="ContentContainer">
-          { list }
-        </div>
-      </div>
+    <div className="Recommended">
+      <h1>{categoryTitle}</h1>
+      <div className="ContentGrid">{list}</div>
     </div>
   );
 }
 
-export default Trending;
+export default ContentCategorySection;

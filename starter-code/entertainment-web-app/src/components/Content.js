@@ -5,7 +5,7 @@ import MovieIcon from "../assets/icon-category-movie.svg";
 import TVIcon from "../assets/icon-category-tv.svg";
 import BookmarkEmptyIcon from "../assets/icon-bookmark-empty.svg";
 import BookmarkFullIcon from "../assets/icon-bookmark-full.svg";
-function Content({ imgSrc, year, name, type, age }) {
+function Content({ imgSrc, year, name, type, adult }) {
   const [bookmarked, setBookmarked] = useState(false);
   const handleToggleBookmark = () => {
     setBookmarked(!bookmarked);
@@ -31,7 +31,7 @@ function Content({ imgSrc, year, name, type, age }) {
         </div>
         <div className="Oval"></div>
         <div className="Age">
-          <p>{age}</p>
+          <p>{adult ? "18+":"PG"}</p>
         </div>
       </div>
       <div className="Name">{name}</div>

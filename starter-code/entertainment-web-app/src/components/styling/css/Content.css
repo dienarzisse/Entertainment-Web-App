@@ -23,6 +23,7 @@
      object-fit: cover;
   border-radius: 0.5rem;
   margin-bottom: 0.25rem;
+  opacity: 0.5;
 }
 .Content .Details {
   display: flex;
@@ -82,6 +83,11 @@
   line-height: normal;
 }
 .Content .Name {
+  display: block;
+  max-width: calc(100% - 5rem);
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
