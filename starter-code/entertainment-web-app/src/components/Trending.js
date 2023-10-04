@@ -15,7 +15,7 @@ function Trending({ trendingList }) {
             item.poster_path
           }
           year={new Date(item.release_date).getFullYear()}
-          name={item.title}
+          name={item.original_title}
           type={item.media_type}
           adult={item.adult}
         />

@@ -4,8 +4,10 @@ export const MEDIA_TYPES = {
   TV: "tv",
 };
 
-export const AGE_TYPES = {
-    PG: "PG",
-    E: "E",
-    EighteenPlus: "18+"
-}
+export const CATEGORIES = {
+  TRENDING: "trending",
+  POPULAR: "popular",
+  NOW_PLAYING: "now_playing",
+  UPCOMING: "upcoming",
+  // to be completed
+};
