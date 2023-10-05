@@ -4,7 +4,7 @@ import Content from "./Content";
 import { CATEGORIES } from "../Constants";
 import "./styling/css/MediaComponent.css";
 
-const MapList = (mediaType, category, page = 1) => {
+const MapList = (mediaType, category, page = 1, listLength = 6) => {
   const [list, setList] = useState([]);
 
   const fetchData = async (options) => {
@@ -13,7 +13,7 @@ const MapList = (mediaType, category, page = 1) => {
       const resultList =
         category === CATEGORIES.TRENDING
           ? response.data.results
-          : response.data.results.slice(0, 6);
+          : response.data.results.slice(0, listLength);
       setList(resultList);
     } catch (error) {
       console.error(error);

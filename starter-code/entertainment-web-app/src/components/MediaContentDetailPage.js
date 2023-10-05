@@ -33,12 +33,20 @@ const MediaContentDetailPage = () => {
   if (!mediaContentDetails) {
     return <div>Loading...</div>;
   }
-
+console.log(mediaContentDetails);
   return (
     <div>
-      <h1>{mediaContentDetails.title ? mediaContentDetails.title : mediaContentDetails.name}</h1>
+      <h1>
+        {mediaContentDetails.title
+          ? mediaContentDetails.title
+          : mediaContentDetails.name}
+      </h1>
       <p>{mediaContentDetails.overview}</p>
       <p>{mediaContentDetails.overview}</p>
+      <img
+        src={`https://image.tmdb.org/t/p/original${mediaContentDetails.poster_path}`}
+        alt="cover"
+      ></img>
     </div>
   );
 };

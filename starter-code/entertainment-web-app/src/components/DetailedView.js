@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MapList from "./MapList";
 const DetailedView = () => {
   const { mediaType, category, page } = useParams();
  const [currentPage, setCurrentPage] = useState(parseInt(page));
   const navigate = useNavigate();
-  const mappedList = MapList(mediaType, category, page);
+  const mappedList = MapList(mediaType, category, page, 20);
 
 
    const goToPreviousPage = () => {
      if (currentPage > 1) {
        setCurrentPage(currentPage - 1);
        navigate(`/${mediaType}/${category}/${currentPage - 1}/details`);
-     }
+       window.scrollTo(0, 0);
+      }
    };
 
    const goToNextPage = () => {
      setCurrentPage(currentPage + 1);
      navigate(`/${mediaType}/${category}/${currentPage + 1}/details`);
-   };
+     window.scrollTo(0, 0);
+    };
 
    return (
      <div className="DetailedView">
