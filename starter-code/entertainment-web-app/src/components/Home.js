@@ -1,29 +1,53 @@
-// import components
-import NavBar from "./NavBar";
-import SearchBar from "./SearchBar";
-import Trending from "./Trending";
-import MediaComponent from "./MediaComponent";
 import "./styling/css/Home.css";
-import "../Constants";
-import { CATEGORIES, MEDIA_TYPES } from "../Constants";
+import MediaComponent from "./MediaComponent";
+import { MOVIECATEGORIES, TVCATEGORIES, MEDIA_TYPES } from "../Constants";
 function Home() {
   return (
     <div className="Home">
-      <NavBar />
-      <SearchBar />
-      <Trending mediaType={MEDIA_TYPES.MOVIE} category={CATEGORIES.POPULAR} />
-      <MediaComponent
-        mediaType={MEDIA_TYPES.MOVIE}
-        category={CATEGORIES.POPULAR}
-      />
-      <MediaComponent
-        mediaType={MEDIA_TYPES.MOVIE}
-        category={CATEGORIES.NOW_PLAYING}
-      />
-      <MediaComponent
-        mediaType={MEDIA_TYPES.MOVIE}
-        category={CATEGORIES.UPCOMING}
-      />
+      <div className="Movies">
+        <MediaComponent
+          mediaType={MEDIA_TYPES.MOVIE}
+          category={MOVIECATEGORIES.TRENDING}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.MOVIE}
+          category={MOVIECATEGORIES.POPULAR}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.MOVIE}
+          category={MOVIECATEGORIES.NOW_PLAYING}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.MOVIE}
+          category={MOVIECATEGORIES.UPCOMING}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.MOVIE}
+          category={MOVIECATEGORIES.TOP_RATED}
+        />
+      </div>
+      <div className="TV-Shows">
+        <MediaComponent
+          mediaType={MEDIA_TYPES.TV}
+          category={TVCATEGORIES.TRENDING}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.TV}
+          category={TVCATEGORIES.POPULAR}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.TV}
+          category={TVCATEGORIES.AIRING_TODAY}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.TV}
+          category={TVCATEGORIES.ON_THE_AIR}
+        />
+        <MediaComponent
+          mediaType={MEDIA_TYPES.TV}
+          category={TVCATEGORIES.TOP_RATED}
+        />
+      </div>
     </div>
   );
 }

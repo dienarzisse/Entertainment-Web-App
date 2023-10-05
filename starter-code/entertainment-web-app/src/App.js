@@ -1,9 +1,14 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-// import components
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import SearchBar from "./components/SearchBar";
 import LandingPage from "./components/LandingPage";
 import AuthDetails from "./components/AuthDetails";
-import Home from './components/Home';
+import MediaComponent from "./components/MediaComponent";
+import DetailedView from "./components/DetailedView";
+import Home from "./components/Home";
+import MediaContentDetailPage from "./components/MediaContentDetailPage";
 
 function App() {
   const [hasAccount, setHasAccount] = useState(true);
@@ -22,15 +27,19 @@ function App() {
 
   return (
     <div className="App">
-      {/* {!signedIn && (
-        <LandingPage
-          hasAccount={hasAccount}
-          setHasAccount={setHasAccount}
-          setSignedIn={setSignedIn}
+      <NavBar />
+      <SearchBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/:mediaType/:category/:page/details"
+          element={<DetailedView />}
         />
-      )}
-      <AuthDetails setSignedIn={setSignedIn} /> */}
-      <Home />
+        <Route
+          path="/:mediaType/:id"
+          element={<MediaContentDetailPage />} 
+        />
+      </Routes>
     </div>
   );
 }
