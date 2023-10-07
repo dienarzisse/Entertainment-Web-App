@@ -39,13 +39,16 @@ const MapList = (mediaType, category, page = 1, listLength = 6) => {
 
    fetchData(options);
  }, [category, mediaType, page]);
-
   const mapList = list.map((item) => (
     <Content
       key={item.id}
       id={item.id}
-      imgSrc={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-      year={new Date(item.release_date).getFullYear() ? new Date(item.release_date).getFullYear(): new Date(item.first_air_date).getFullYear()}
+      imgSrc={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+      year={
+        new Date(item.release_date).getFullYear()
+          ? new Date(item.release_date).getFullYear()
+          : new Date(item.first_air_date).getFullYear()
+      }
       name={item.title ? item.title : item.name}
       mediaType={item.media_type ? item.media_type : mediaType}
       adult={item.adult}

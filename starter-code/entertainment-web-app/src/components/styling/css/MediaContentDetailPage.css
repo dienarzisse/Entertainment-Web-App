@@ -1,0 +1,9 @@
+.MediaContentDetailPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.MediaContentDetailPage img {
+  max-height: 15rem;
+}/*# sourceMappingURL=MediaContentDetailPage.css.map */

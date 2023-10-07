@@ -5,14 +5,25 @@ import MovieNavIcon from "../assets/icon-nav-movies.svg";
 import TVNavIcon from "../assets/icon-nav-tv-series.svg";
 import BookmarkIcon from "../assets/icon-nav-bookmark.svg";
 import Avatar from "../assets/image-avatar.png";
-import './styling/css/NavBar.css';
+import "./styling/css/NavBar.css";
+import { useNavigate } from "react-router-dom";
 function NavBar() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/`);
+  };
+
   return (
     <nav className="NavBar">
-      <img src={Logo} alt="logo" className="Logo"></img>
-      <div className="CenterNavGroup"> 
-      {/* deal with the right element having the "selected" class later*/}
-        <img src={HomeIcon} alt="home nav icon" className="NavSelected"></img>
+      <img src={Logo} alt="logo" className="Logo" onClick={handleClick}></img>
+      <div className="CenterNavGroup">
+        {/* deal with the right element having the "selected" class later*/}
+        <img
+          src={HomeIcon}
+          alt="home nav icon"
+          className="NavSelected"
+          onClick={handleClick}
+        ></img>
         <img src={MovieNavIcon} alt="movie nav icon"></img>
         <img src={TVNavIcon} alt="tv nav icon"></img>
         <img src={BookmarkIcon} alt="bookmark nav icon"></img>

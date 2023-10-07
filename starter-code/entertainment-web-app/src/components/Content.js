@@ -9,16 +9,13 @@ import "./styling/css/Content.css";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult }) => {
   const [bookmarked, setBookmarked] = useState(false);
-
-  const handleToggleBookmark = () => {
-    setBookmarked(!bookmarked);
-  };
   const navigate = useNavigate();
-  const mediaIcon = mediaType === MEDIA_TYPES.MOVIE ? MovieIcon : TVIcon;
-  const ageRating = adult ? "18+" : "PG";
+
   const handleClick = () => {
     navigate(`/${mediaType}/${id}`);
+    window.scrollTo(0, 0);
   };
+
   return (
     <div className="Content">
       <img
@@ -29,19 +26,28 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult }) => {
         onClick={handleClick}
       />
       <div className="Details">
-        <div className="Year">{year}</div>
-        <div className="Oval"></div>
-        <div className="Type">
-          <img src={mediaIcon} alt="media type" />
-          <p>{mediaType}</p>
+        <div className="Year-Type-Wrapper">
+          <div className="Year">{year}</div>
+          <div className="Oval" />
+          <div className="Type">
+            <img
+              src={mediaType === MEDIA_TYPES.MOVIE ? MovieIcon : TVIcon}
+              alt="media type"
+            />
+            <p>{mediaType}</p>
+          </div>
         </div>
-        <div className="Oval"></div>
         <div className="Age">
-          <p>{ageRating}</p>
+          <p>{adult ? "18+" : "PG"}</p>
         </div>
       </div>
-      <div className="Name">{name}</div>
-      <div className="BookmarkContainer" onClick={handleToggleBookmark}>
+      <div className="Name" onClick={handleClick}>
+        {name}
+      </div>
+      <div
+        className="BookmarkContainer"
+        onClick={() => setBookmarked(!bookmarked)}
+      >
         <img
           src={bookmarked ? BookmarkFullIcon : BookmarkEmptyIcon}
           alt="bookmark"

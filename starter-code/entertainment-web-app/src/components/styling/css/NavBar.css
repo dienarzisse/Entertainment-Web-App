@@ -10,6 +10,7 @@
 .NavBar .Logo {
   width: 1.5625rem;
   height: 1.25rem;
+  cursor: pointer;
 }
 .NavBar .CenterNavGroup {
   width: 8.346rem;

@@ -1,43 +1,46 @@
 .Content {
-  width: 15rem;
-  height: 8.75rem;
+  max-width: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
   position: relative;
   border-radius: 0.5rem;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .Content .Background {
-  -webkit-user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  width: 15rem;
-  height: 8.75rem;
+  max-height: 8.75rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 0.5rem;
   margin-bottom: 0.25rem;
-  opacity: 0.5;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  opacity: 0.5; /* Added opacity */
+}
+.Content .Background:hover {
+  opacity: 0.75;
 }
 .Content .Details {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 0.25rem;
+}
+.Content .Details .Year-Type-Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Content .Details .Year {
   font-family: Outfit;
   font-size: 12px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 }
 .Content .Details .Oval {
   background-color: #fff;
@@ -51,7 +54,6 @@
 }
 .Content .Details .Type {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -64,35 +66,36 @@
   text-transform: capitalize;
   font-family: Outfit;
   font-size: 0.75rem;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 }
 .Content .Details .Age {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 0.475rem;
+  width: 2.125rem;
+  height: 1.3125rem;
+  border-radius: 10.5px;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 .Content .Details .Age p {
   opacity: 1;
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
-  /* Body (S) */
   font-size: 0.8125rem;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
+}
+.Content .ContentContainer {
+  background-color: red;
 }
 .Content .Name {
   display: block;
   max-width: calc(100% - 5rem);
+  overflow: hidden;
   white-space: nowrap;
-  overflow: hidden !important;
   text-overflow: ellipsis;
   font-size: 0.875rem;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 .Content .BookmarkContainer {
   position: absolute;
@@ -101,7 +104,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: 100%;
-  background-color: rgba(0, 0, 0, 0.15); /* Opacity set to 0.15 */
+  background-color: rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content: center;
   align-items: center;

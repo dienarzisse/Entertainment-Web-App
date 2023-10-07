@@ -32,13 +32,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="/:mediaType/:category/:page/details"
+          path="/:mediaType/:category/details/:page"
           element={<DetailedView />}
         />
-        <Route
-          path="/:mediaType/:id"
-          element={<MediaContentDetailPage />} 
-        />
+        <Route path="/:mediaType/:id" element={<MediaContentDetailPage />} />
       </Routes>
     </div>
   );

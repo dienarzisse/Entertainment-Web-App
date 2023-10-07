@@ -2,10 +2,7 @@
   width: 100%;
   padding: 1rem;
   padding-top: 0;
-  /* width */
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
+  overflow: hidden;
 }
 .Trending h1 {
   font-size: 1.25rem;
@@ -15,23 +12,24 @@
   letter-spacing: -0.0195rem;
   margin-bottom: 1rem;
 }
-.Trending .ScrollContainer {
+.Trending .Container {
   width: 100%;
   overflow-y: hidden;
   overflow-x: scroll;
   white-space: nowrap;
+  /* Scrollbar Styles */
 }
-.Trending ::-webkit-scrollbar {
+.Trending .Container::-webkit-scrollbar {
   width: 20px;
 }
-.Trending ::-webkit-scrollbar-track {
+.Trending .Container::-webkit-scrollbar-track {
   border-radius: 10px;
 }
-.Trending ::-webkit-scrollbar-thumb {
+.Trending .Container::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background: hsl(223, 25%, 35%);
 }
-.Trending ::-webkit-scrollbar-thumb:hover {
+.Trending .Container::-webkit-scrollbar-thumb:hover {
   background: hsl(223, 25%, 55%);
 }
 .Trending .ContentContainer {
