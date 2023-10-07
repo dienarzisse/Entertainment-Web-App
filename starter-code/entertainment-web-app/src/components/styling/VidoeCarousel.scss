@@ -1,0 +1,30 @@
+.video-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+
+  button {
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin: 0 10px;
+  }
+
+  .video-list-container {
+    max-width: 1200px; /* Adjust this to your desired width */
+    overflow: hidden;
+    position: relative;
+
+    .video-list {
+      display: flex;
+      transition: transform 0.3s ease;
+      transform: translateX(120px);
+      iframe {
+        margin-right: 10px; /* Adjust spacing between videos */
+        width: 600px;
+        height: 225px; /* Adjust the height of the videos */
+        margin-right: 20px;
+      }
+    }
+  }
+}

@@ -46,7 +46,6 @@ function Providers() {
     "Rent"
   );
 
-  console.log(selectedProviders);
   const handleCountryChange = (event) => {
     const selectedCountry = event.target.value;
     // Set the chosen country

@@ -6,6 +6,7 @@ import { GetLanguageName } from "../HelperFunctions";
 import "./styling/css/MediaContentDetailPage.css";
 import Content from "./Content";
 import Providers from "./Providers";
+import VideoCarousel from "./VideoCarousel";
 
 const MediaContentDetailPage = () => {
   const { mediaType, id } = useParams();
@@ -198,6 +199,7 @@ const MediaContentDetailPage = () => {
         {mappedImagesList}
       </div>
       <Providers />
+      <VideoCarousel />
       <div className="Similar-Content">
         <h1>Similar</h1>
         {mappedSimilarList}
