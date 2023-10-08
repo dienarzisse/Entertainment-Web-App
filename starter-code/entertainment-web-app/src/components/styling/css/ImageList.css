@@ -1,0 +1,15 @@
+.ImageList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ImageList .ImageListMap {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.ImageList .ImageListMap img {
+  max-width: 80%;
+  margin-right: 0.5rem;
+}/*# sourceMappingURL=ImageList.css.map */

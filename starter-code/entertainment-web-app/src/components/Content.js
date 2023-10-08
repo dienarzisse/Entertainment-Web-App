@@ -5,9 +5,11 @@ import TVIcon from "../assets/icon-category-tv.svg";
 import BookmarkEmptyIcon from "../assets/icon-bookmark-empty.svg";
 import BookmarkFullIcon from "../assets/icon-bookmark-full.svg";
 import { useNavigate } from "react-router-dom";
+import Stars from "react-stars";
+import { RoundStars } from "../HelperFunctions";
 import "./styling/css/Content.css";
 
-const Content = ({ id, imgSrc, year, name, mediaType, adult }) => {
+const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
   const navigate = useNavigate();
 
@@ -43,6 +45,17 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult }) => {
       </div>
       <div className="Name" onClick={handleClick}>
         {name}
+      </div>
+      <div className="Rating">
+        <Stars
+          count={5}
+          value={RoundStars(rating)}
+          size={16}
+          color1={"#999"} // Unselected star color
+          color2={"#ffd700"} // Selected star color
+          half={true} // Enable half stars
+          edit={false}
+        />
       </div>
       <div
         className="BookmarkContainer"

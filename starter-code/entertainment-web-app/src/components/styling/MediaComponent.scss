@@ -92,17 +92,22 @@
     .Content {
       .Year-Type-Wrapper{
         position: absolute;
-        top: 5.375rem;
+        top: 4.5rem;
         left: 1rem;
       }
 
       .Age {
         position: absolute;
-        top: 5.9375rem;
+        top: 5.5375rem;
         right: 1rem;
       }
 
       .Name {
+        position: absolute;
+        top: 5.5625rem;
+        left: 1rem;
+      }
+      .Rating{
         position: absolute;
         top: 6.5625rem;
         left: 1rem;

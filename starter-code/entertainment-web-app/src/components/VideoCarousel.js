@@ -1,25 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import axios from "axios";
+import { FetchData } from "../HelperFunctions";
 import "./styling/css/VidoeCarousel.css";
 
 function VideoCarousel() {
   const { mediaType, id } = useParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videos, setVideos] = useState({ results: [] });
-
-  console.log(videos);
-  const fetchData = async (options, setter) => {
-    try {
-      const response = await axios(options);
-      const resultList = response.data;
-      setter(resultList);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+  const videoListRef = useRef(null);
   useEffect(() => {
     const optionsVideos = {
       method: "GET",
@@ -31,12 +20,12 @@ function VideoCarousel() {
       },
     };
     setCurrentIndex(0);
-    fetchData(optionsVideos, setVideos);
+    FetchData(optionsVideos, setVideos);
   }, [mediaType, id]);
 
   const handlePrevClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1  : videos.results.length - 2
+      prevIndex > 0 ? prevIndex - 1 : videos.results.length - 2
     );
   };
 
@@ -50,17 +39,24 @@ function VideoCarousel() {
   if (videos.results.length === 0) {
     return null; // Do not render anything if there are no videos
   }
-
+  
   return (
     <div className="video-carousel">
-      <button onClick={handlePrevClick}>Previous</button>
-      <div className="video-list-container">
+      <button onClick={handlePrevClick}>{"<"}</button>
+      <div className="video-list-container" ref={videoListRef}>
         <div
           className="video-list"
-          style={{ transform: `translateX(-${currentIndex * 620}px)` }}
+          style={{
+            transform: `translateX(-${
+              videoListRef.current
+                ? currentIndex * videoListRef.current.offsetWidth
+                : 0
+            }px)`,
+          }}
         >
           {videos.results.map((video) => (
             <ReactPlayer
+              className="react-player"
               key={video.id}
               url={`https://www.youtube.com/watch?v=${video.key}`}
               width="100%"
@@ -71,7 +67,7 @@ function VideoCarousel() {
           ))}
         </div>
       </div>
-      <button onClick={handleNextClick}>Next</button>
+      <button onClick={handleNextClick}>{">"}</button>
     </div>
   );
 }

@@ -52,6 +52,7 @@ const MapList = (mediaType, category, page = 1, listLength = 6) => {
       name={item.title ? item.title : item.name}
       mediaType={item.media_type ? item.media_type : mediaType}
       adult={item.adult}
+      rating={item.vote_average / 2}
     />
   ));
 
