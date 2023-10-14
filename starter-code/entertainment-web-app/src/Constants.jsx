@@ -24,3 +24,8 @@ export const CATEGORIES = {
   TRENDING: "trending",
   POPULAR: "popular"
 };
+
+export const PARITY = {
+  EVEN: "Even",
+  ODD: "Odd"
+}

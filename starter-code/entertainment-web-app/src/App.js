@@ -11,7 +11,8 @@ import DetailedView from "./components/DetailedView";
 import Home from "./components/Home";
 import MediaContentDetailPage from "./components/MediaContentDetailPage";
 import MovieCategories from "./components/Genres";
-import MovieGenres from "./components/Genres";
+import Genres from "./components/Genres";
+import GenresList from "./components/GenresList";
 
 function App() {
   const [hasAccount, setHasAccount] = useState(true);
@@ -39,7 +40,11 @@ function App() {
           element={<DetailedView />}
         />
         <Route path="/search/:keyword/:page" element={<SearchView />} />
-        <Route path="/:mediaType/genres" element={<MovieGenres />} />
+        <Route path="/:mediaType/genres" element={<Genres />} />
+        <Route
+          path="/:mediaType/genre/:genre_id/:genre_name/:page"
+          element={<GenresList />}
+        />
         <Route path="/:mediaType/:id" element={<MediaContentDetailPage />} />
       </Routes>
     </div>

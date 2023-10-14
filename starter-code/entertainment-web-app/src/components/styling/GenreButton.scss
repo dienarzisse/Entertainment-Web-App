@@ -1,0 +1,16 @@
+.GenreButton {
+  width: 9rem;
+  height: 9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Even {
+  background-color: rgb(62, 156, 156);
+}
+
+.Odd {
+  background-color: rgb(7, 27, 71);
+}
