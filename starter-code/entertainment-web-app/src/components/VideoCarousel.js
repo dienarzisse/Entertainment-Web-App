@@ -36,16 +36,22 @@ function VideoCarousel() {
     );
   };
 
+  const handleResize = () => {
+    setCurrentIndex(0);
+  };
+  window.addEventListener("resize", handleResize);
+
   if (videos.results.length === 0) {
     return null; // Do not render anything if there are no videos
   }
-  
+
   return (
     <div className="video-carousel">
       <button onClick={handlePrevClick}>{"<"}</button>
-      <div className="video-list-container" ref={videoListRef}>
+      <div className="video-list-container">
         <div
           className="video-list"
+          ref={videoListRef}
           style={{
             transform: `translateX(-${
               videoListRef.current

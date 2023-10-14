@@ -6,9 +6,12 @@ import SearchBar from "./components/SearchBar";
 import LandingPage from "./components/LandingPage";
 import AuthDetails from "./components/AuthDetails";
 import MediaComponent from "./components/MediaComponent";
+import SearchView from "./components/SearchView";
 import DetailedView from "./components/DetailedView";
 import Home from "./components/Home";
 import MediaContentDetailPage from "./components/MediaContentDetailPage";
+import MovieCategories from "./components/Genres";
+import MovieGenres from "./components/Genres";
 
 function App() {
   const [hasAccount, setHasAccount] = useState(true);
@@ -35,6 +38,8 @@ function App() {
           path="/:mediaType/:category/details/:page"
           element={<DetailedView />}
         />
+        <Route path="/search/:keyword/:page" element={<SearchView />} />
+        <Route path="/:mediaType/genres" element={<MovieGenres />} />
         <Route path="/:mediaType/:id" element={<MediaContentDetailPage />} />
       </Routes>
     </div>

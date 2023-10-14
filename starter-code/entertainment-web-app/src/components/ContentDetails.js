@@ -5,7 +5,7 @@ import { FetchData } from "../HelperFunctions";
 import { RoundStars } from "../HelperFunctions";
 import Stars from "react-stars";
 import IMDbIcon from "../assets/imdb-logo.svg";
-import HomeIcon from "../assets/home-logo.svg"
+import HomeIcon from "../assets/home-logo.svg";
 import "./styling/css/ContentDetails.css";
 function ContentDetails() {
   const { mediaType, id } = useParams();
@@ -27,7 +27,6 @@ function ContentDetails() {
 
     FetchData(optionsDetails, setmediaContentDetails);
   }, [mediaType, id]);
-
   if (!mediaContentDetails) {
     return <div>Loading...</div>;
   }
@@ -47,21 +46,25 @@ function ContentDetails() {
 
       <div className="Rating">
         <div className="RatingText">
-          <a
-            href="http://www.oppenheimermovie.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src={HomeIcon} alt="IMDb"></img>
-          </a>
+          {mediaContentDetails.homepage && (
+            <a
+              href={`${mediaContentDetails.homepage}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={HomeIcon} alt="IMDb"></img>
+            </a>
+          )}
           {roundOneDecimal(mediaContentDetails.vote_average / 2)}
-          <a
-            href={`https://www.imdb.com/title/${mediaContentDetails.imdb_id}/`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src={IMDbIcon} alt="IMDb"></img>
-          </a>
+          {mediaContentDetails.imdb_id && (
+            <a
+              href={`https://www.imdb.com/title/${mediaContentDetails.imdb_id}/`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={IMDbIcon} alt="IMDb"></img>
+            </a>
+          )}
         </div>
         <Stars
           count={5}

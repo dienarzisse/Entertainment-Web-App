@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import "./styling/css/Providers.css";
 function Providers() {
   const { mediaType, id } = useParams();
   const [providersList, setProvidersList] = useState({ results: {} });
@@ -12,23 +12,26 @@ function Providers() {
     buy: [],
     flatrate: [],
     rent: [],
+    ads: []
   };
 
   const generateMappedProviders = (providers, type) => {
     const mappedProviders =
       providers && providers.length > 0
         ? providers.map((provider, index) => (
-            <img
-              key={index}
-              src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
-              alt="provider"
-            ></img>
+            <a href={selectedProviders.link} target="_blank" rel="noreferrer">
+              <img
+                key={index}
+                src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
+                alt="provider"
+              ></img>
+            </a>
           ))
         : null;
     return providers ? (
       <div className={`${type}`}>
-        <h1>{`${type}`}</h1>
-        {mappedProviders}
+        <h1 className={`${type}`}>{`${type}`}</h1>
+        <div className="Map">{mappedProviders}</div>
       </div>
     ) : null;
   };
@@ -37,13 +40,17 @@ function Providers() {
     selectedProviders.buy,
     "Buy"
   );
-  const mappedFlatrateProviders = generateMappedProviders(
+  const mappedStreamProvider = generateMappedProviders(
     selectedProviders.flatrate,
-    "Flatrate"
+    "Stream"
   );
   const mappedRentProviders = generateMappedProviders(
     selectedProviders.rent,
     "Rent"
+  );
+  const mappedAdsProviders = generateMappedProviders(
+    selectedProviders.ads,
+    "Ads"
   );
 
   const handleCountryChange = (event) => {
@@ -108,15 +115,10 @@ function Providers() {
       setSelectedCountry(availableCountries[0]); // Set default to the first available country
     }
   }, [availableCountries]);
-
+  if (Object.keys(providersList.results).length < 1) return null;
   return (
-    <>
-      {Object.keys(providersList.results).length > 0 ? (
         <div className="Providers">
-          <h1>You can watch it here</h1>
-          <h2>Powered by JustWatch</h2>
           <div className="Provider-Dropdown">
-            <h2>Select Country</h2>
             <select onChange={handleCountryChange} value={selectedCountry}>
               {availableCountries &&
                 availableCountries.map((countryCode) => (
@@ -127,22 +129,14 @@ function Providers() {
             </select>
           </div>
           <div className="Providers-List">
-            {mappedBuyProviders}
-            {mappedFlatrateProviders}
-            {mappedRentProviders}
-            <div className="More-Details">
-              <a href={selectedProviders.link} target="_blank" rel="noreferrer">
-                More Informations
-              </a>
-            </div>
+            <div className="Stream-Map">{mappedStreamProvider}</div>
+            <div className="Rent-Map">{mappedRentProviders}</div>
+            <div className="Buy-Map">{mappedBuyProviders}</div>
+            <div className="Ads-Map">{mappedAdsProviders}</div>
           </div>
+          <h2>Powered by TMDB and JustWatch </h2>
         </div>
-      ) : (
-        <div className="No-Providers">
-          <p>No providers available </p>
-        </div>
-      )}
-    </>
+
   );
 }
 

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Stars from "react-stars";
 import { RoundStars } from "../HelperFunctions";
 import "./styling/css/Content.css";
+import ContentCover from "../assets/icon-unknown-content-cover.svg";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
@@ -21,7 +22,9 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   return (
     <div className="Content">
       <img
-        src={imgSrc}
+        src={
+          imgSrc ? `https://image.tmdb.org/t/p/original${imgSrc}` : ContentCover
+        }
         alt="movie"
         className="Background"
         draggable="false"

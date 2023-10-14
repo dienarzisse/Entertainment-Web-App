@@ -43,7 +43,7 @@ const MapList = (mediaType, category, page = 1, listLength = 6) => {
     <Content
       key={item.id}
       id={item.id}
-      imgSrc={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+      imgSrc={item.backdrop_path}
       year={
         new Date(item.release_date).getFullYear()
           ? new Date(item.release_date).getFullYear()

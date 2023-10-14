@@ -1,17 +1,28 @@
-import SearchIcon from '../assets/icon-search.svg';
-import './styling/css/SearchBar.css';
+import { useState } from "react";
+import SearchIcon from "../assets/icon-search.svg";
+import "./styling/css/SearchBar.css";
+import { useNavigate } from "react-router-dom";
 function SearchBar() {
+  const [userInput, setUserInput] = useState("");
+  const navigate = useNavigate();
   const handleSearch = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const query = formData.get("query");
-    // Implement your search logic here
-    console.log("Search query:", query);
+    navigate(`/search/${userInput}/1`);
+    window.scrollTo(0, 0);
+    setUserInput();
   };
 
+  const handleChange = (e) => {
+    setUserInput(e.target.value);
+  };
   return (
     <div className="SearchBar">
-      <form className="search-form" onSubmit={handleSearch}>
+      <form
+        className="search-form"
+        onSubmit={handleSearch}
+        onChange={handleChange}
+        value={userInput}
+      >
         <button className="search-button" type="submit">
           <img src={SearchIcon} alt="Search" />
         </button>

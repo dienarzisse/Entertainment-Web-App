@@ -9,17 +9,16 @@
   button {
     font-size: 1rem;
     padding: 0.25rem;
+    z-index: 1;
   }
-
+  // 1 pixel on videos wtf
   .video-list-container {
-    overflow: hidden;
-    position: relative;
     width: fit-content;
-    height: fit-content;
+    overflow: hidden;
+    height: 50vw;
     .video-list {
-      display: block;
       width: 100%;
-      height: 50vw;
+      height: 45vw;
       display: flex;
       justify-content: start;
       align-items: center;

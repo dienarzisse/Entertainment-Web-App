@@ -4,6 +4,9 @@
   justify-content: center;
   align-items: center;
 }
+.ImageList h1 {
+  margin-bottom: 0.5rem;
+}
 .ImageList .ImageListMap {
   overflow-y: hidden;
   overflow-x: scroll;
