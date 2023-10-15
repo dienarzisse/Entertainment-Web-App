@@ -45,7 +45,7 @@ function NavBar() {
           alt="tv nav icon"
           onClick={handleClickTV}
         ></img>
-        <img src={BookmarkIcon} alt="bookmark nav icon"></img>
+        {/* <img src={BookmarkIcon} alt="bookmark nav icon"></img> */}
       </div>
       <img src={Avatar} alt="avatar" className="Avatar"></img>
     </nav>

@@ -9,6 +9,7 @@ import Stars from "react-stars";
 import { RoundStars } from "../HelperFunctions";
 import "./styling/css/Content.css";
 import ContentCover from "../assets/icon-unknown-content-cover.svg";
+import ReactLoading from "react-loading";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
@@ -18,7 +19,15 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
     navigate(`/${mediaType}/${id}`);
     window.scrollTo(0, 0);
   };
+const allParamsAvailable = id && imgSrc && year && name && mediaType && rating;
 
+if (!allParamsAvailable) {
+  return (
+    <div className="LoadingContainer">
+      <ReactLoading type={"spin"} color={"#007bff"} height={50} width={50} />
+    </div>
+  );
+}
   return (
     <div className="Content">
       <img
