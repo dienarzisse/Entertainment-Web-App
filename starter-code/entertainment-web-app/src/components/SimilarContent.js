@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { FetchData } from "../HelperFunctions";
 import Content from "./Content";
 import "./styling/css/SimilarContent.css";
+import Loading from "./Loading";
 function SimilarContent() {
   const { mediaType, id } = useParams();
   const [similarList, setSimilarList] = useState({ results: [] });
@@ -40,6 +41,7 @@ function SimilarContent() {
       };
       FetchData(optionsSimilar, setSimilarList);
     }, [mediaType, id]);
+    if(!mappedSimilarList) return Loading;
   return (
     <div className="SimilarContent">
       <h1>Similar</h1>
