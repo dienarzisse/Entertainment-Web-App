@@ -59,7 +59,7 @@ function ImageList() {
       <Carousel
         swipeable={false}
         draggable={false}
-        showDots={true}
+        showDots={false}
         responsive={responsive}
         ssr={false} // means to render carousel on server-side.
         infinite={true}
@@ -67,11 +67,11 @@ function ImageList() {
         keyBoardControl={true}
         transitionDuration={500}
         containerClass="carousel-container"
-        itemClass="carousel-item"
         // removeArrowOnDeviceType={["tablet", "mobile"]}
         //deviceType={true}//{this.props.deviceType}
         dotListClass="custom-dot-list-style"
         className="location-jobs "
+        itemClass="carousel-item"
       >
         {mappedList}
       </Carousel>

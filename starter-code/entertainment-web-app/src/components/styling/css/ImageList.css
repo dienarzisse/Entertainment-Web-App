@@ -11,11 +11,7 @@
 .ImageList .carousel-container {
   width: 100%;
 }
-.ImageList .carousel-item {
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.ImageList .carousel-item img {
-  width: 100%;
-  max-height: 50rem;
+.ImageList .carousel-container .carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
 }/*# sourceMappingURL=ImageList.css.map */

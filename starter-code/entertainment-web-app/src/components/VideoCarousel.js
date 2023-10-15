@@ -6,11 +6,22 @@ import "react-multi-carousel/lib/styles.css";
 import "./styling/css/VidoeCarousel.css";
 
 const LazyReactPlayer = lazy(() => import("react-player/lazy"));
-
 function VideoCarousel() {
   const { mediaType, id } = useParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videos, setVideos] = useState({ results: [] });
+  const mappedList = videos.results.map((video) => (
+    <Suspense key={video.id} fallback={<div>Loading...</div>}>
+      <LazyReactPlayer
+        className="react-player"
+        url={`https://www.youtube.com/watch?v=${video.key}`}
+        width="100%"
+        height="100%"
+        controls={true}
+        playing={currentIndex === video.id}
+      />
+    </Suspense>
+  ));
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -49,36 +60,25 @@ function VideoCarousel() {
 
   return (
     <div className="video-carousel">
-        <Carousel
-          swipeable={false}
-          draggable={false}
-          showDots={true}
-          responsive={responsive}
-          ssr={false} // means to render carousel on server-side.
-          infinite={true}
-          autoPlay={false}
-          keyBoardControl={true}
-          transitionDuration={500}
-          containerClass="carousel-container"
-          itemClass="carousel-item"
-          // removeArrowOnDeviceType={["tablet", "mobile"]}
-          //deviceType={true}//{this.props.deviceType}
-          dotListClass="custom-dot-list-style"
-          className="location-jobs "
-        >
-          {videos.results.map((video) => (
-            <Suspense key={video.id} fallback={<div>Loading...</div>}>
-              <LazyReactPlayer
-                className="react-player"
-                url={`https://www.youtube.com/watch?v=${video.key}`}
-                width="100%"
-                height="100%"
-                controls={true}
-                playing={currentIndex === video.id}
-              />
-            </Suspense>
-          ))}
-        </Carousel>
+      <h1>Videos</h1>
+      <Carousel
+        swipeable={false}
+        draggable={false}
+        responsive={responsive}
+        ssr={false} // means to render carousel on server-side.
+        infinite={true}
+        autoPlay={false}
+        keyBoardControl={true}
+        transitionDuration={500}
+        containerClass="carousel-container"
+        // removeArrowOnDeviceType={["tablet", "mobile"]}
+        //deviceType={true}//{this.props.deviceType}
+        dotListClass="custom-dot-list-style"
+        className="location-jobs "
+        itemClass="carousel-item"
+      >
+        {mappedList}
+      </Carousel>
     </div>
   );
 }
