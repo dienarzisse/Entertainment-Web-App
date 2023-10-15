@@ -1,14 +1,34 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
-import ReactPlayer from "react-player";
 import { FetchData } from "../HelperFunctions";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import "./styling/css/VidoeCarousel.css";
+
+const LazyReactPlayer = lazy(() => import("react-player/lazy"));
 
 function VideoCarousel() {
   const { mediaType, id } = useParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videos, setVideos] = useState({ results: [] });
-  const videoListRef = useRef(null);
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
   useEffect(() => {
     const optionsVideos = {
       method: "GET",
@@ -23,57 +43,42 @@ function VideoCarousel() {
     FetchData(optionsVideos, setVideos);
   }, [mediaType, id]);
 
-  const handlePrevClick = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : videos.results.length - 2
-    );
-  };
-
-  const handleNextClick = () => {
-    // you have to fix this trash that's happening
-    setCurrentIndex((prevIndex) =>
-      prevIndex < videos.results.length - 2 ? prevIndex + 1 : 0
-    );
-  };
-
-  const handleResize = () => {
-    setCurrentIndex(0);
-  };
-  window.addEventListener("resize", handleResize);
-
-  if (videos.results.length === 0) {
+   if (videos.results.length === 0) {
     return null; // Do not render anything if there are no videos
   }
 
   return (
     <div className="video-carousel">
-      <button onClick={handlePrevClick}>{"<"}</button>
-      <div className="video-list-container">
-        <div
-          className="video-list"
-          ref={videoListRef}
-          style={{
-            transform: `translateX(-${
-              videoListRef.current
-                ? currentIndex * videoListRef.current.offsetWidth
-                : 0
-            }px)`,
-          }}
+        <Carousel
+          swipeable={false}
+          draggable={false}
+          showDots={true}
+          responsive={responsive}
+          ssr={false} // means to render carousel on server-side.
+          infinite={true}
+          autoPlay={false}
+          keyBoardControl={true}
+          transitionDuration={500}
+          containerClass="carousel-container"
+          itemClass="carousel-item"
+          // removeArrowOnDeviceType={["tablet", "mobile"]}
+          //deviceType={true}//{this.props.deviceType}
+          dotListClass="custom-dot-list-style"
+          className="location-jobs "
         >
           {videos.results.map((video) => (
-            <ReactPlayer
-              className="react-player"
-              key={video.id}
-              url={`https://www.youtube.com/watch?v=${video.key}`}
-              width="100%"
-              height="100%"
-              controls={true}
-              playing={currentIndex === video.id}
-            />
+            <Suspense key={video.id} fallback={<div>Loading...</div>}>
+              <LazyReactPlayer
+                className="react-player"
+                url={`https://www.youtube.com/watch?v=${video.key}`}
+                width="100%"
+                height="100%"
+                controls={true}
+                playing={currentIndex === video.id}
+              />
+            </Suspense>
           ))}
-        </div>
-      </div>
-      <button onClick={handleNextClick}>{">"}</button>
+        </Carousel>
     </div>
   );
 }

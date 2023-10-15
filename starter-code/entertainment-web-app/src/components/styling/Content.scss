@@ -16,13 +16,6 @@
     margin-bottom: 0.25rem;
     user-select: none;
     opacity: 0.5; /* Added opacity */
-    .loading {
-      filter: blur(10px);
-    }
-
-    .loaded {
-      filter: blur(0);
-    }
   }
   .Background:hover {
     opacity: 0.75;
@@ -66,9 +59,6 @@
         width: 0.75rem;
         height: 0.75rem;
         margin-right: 0.375rem;
-      }
-      .low-res-image {
-        filter: blur(20px); /* Adjust the blur amount as needed */
       }
 
       p {
