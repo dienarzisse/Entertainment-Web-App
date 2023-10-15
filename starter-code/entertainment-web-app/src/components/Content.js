@@ -9,35 +9,38 @@ import Stars from "react-stars";
 import { RoundStars } from "../HelperFunctions";
 import "./styling/css/Content.css";
 import ContentCover from "../assets/icon-unknown-content-cover.svg";
-import ReactLoading from "react-loading";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/${mediaType}/${id}`);
     window.scrollTo(0, 0);
   };
+  const handleLowResLoad = () => {
+    const highResImage = new Image();
+    highResImage.src = `https://image.tmdb.org/t/p/original${imgSrc}`;
+    highResImage.onload = handleHighResLoad;
+  };
+  const handleHighResLoad = () => {
+    setImageLoaded(true);
+  };
 const allParamsAvailable = id && imgSrc && year && name && mediaType && rating;
 
 if (!allParamsAvailable) {
-  return (
-    <div className="LoadingContainer">
-      <ReactLoading type={"spin"} color={"#007bff"} height={50} width={50} />
-    </div>
-  );
+  return null;
 }
   return (
     <div className="Content">
       <img
-        src={
-          imgSrc ? `https://image.tmdb.org/t/p/original${imgSrc}` : ContentCover
-        }
-        alt="movie"
-        className="Background"
+        src={imgSrc ? `https://image.tmdb.org/t/p/w200${imgSrc}` : ContentCover}
+        alt="content"
+        className={`Background ${imageLoaded ? "loaded" : "loading"}`}
         draggable="false"
         onClick={handleClick}
+        onLoad={handleLowResLoad}
       />
       <div className="Details">
         <div className="Year-Type-Wrapper">
