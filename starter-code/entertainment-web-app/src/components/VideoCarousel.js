@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy } from "react";
 import { useParams } from "react-router-dom";
 import { FetchData } from "../HelperFunctions";
 import Carousel from "react-multi-carousel";
@@ -11,8 +11,8 @@ function VideoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [videos, setVideos] = useState({ results: [] });
   const mappedList = videos.results.map((video) => (
-    <Suspense key={video.id} fallback={<div>Loading...</div>}>
       <LazyReactPlayer
+      fallback={<div>Loading...</div>}
         className="react-player"
         url={`https://www.youtube.com/watch?v=${video.key}`}
         width="100%"
@@ -20,7 +20,6 @@ function VideoCarousel() {
         controls={true}
         playing={currentIndex === video.id}
       />
-    </Suspense>
   ));
   const responsive = {
     superLargeDesktop: {

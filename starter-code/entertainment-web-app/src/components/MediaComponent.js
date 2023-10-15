@@ -2,8 +2,10 @@ import MapList from "./MapList";
 import { Link } from "react-router-dom";
 import "./styling/css/MediaComponent.css";
 import { StringToTitle } from "../HelperFunctions";
+import Loading from "./Loading";
 const MediaComponent = ({ mediaType, category, page = 1 }) => {
   const mappedList = MapList(mediaType, category, page);
+  if (!mappedList) return Loading;
   return (
     <div className={category === "trending" ? "Trending" : "MediaComponent"}>
       <nav>
