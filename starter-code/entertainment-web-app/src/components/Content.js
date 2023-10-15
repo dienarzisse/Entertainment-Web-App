@@ -10,6 +10,7 @@ import Stars from "react-stars";
 import { RoundStars } from "../HelperFunctions";
 import "./styling/css/Content.css";
 import ContentCover from "../assets/icon-unknown-content-cover.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
@@ -27,8 +28,8 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
     <div className="Content" ref={ref}>
       {inView && (
         <>
-          <img
-            loading="lazy"
+          <LazyLoadImage
+          effect="blur"
             src={
               imgSrc
                 ? `https://image.tmdb.org/t/p/original${imgSrc}`

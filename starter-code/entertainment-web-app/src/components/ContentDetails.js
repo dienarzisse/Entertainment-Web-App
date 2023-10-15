@@ -6,6 +6,7 @@ import { RoundStars } from "../HelperFunctions";
 import Stars from "react-stars";
 import IMDbIcon from "../assets/imdb-logo.svg";
 import HomeIcon from "../assets/home-logo.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./styling/css/ContentDetails.css";
 function ContentDetails() {
   const { mediaType, id } = useParams();
@@ -32,11 +33,12 @@ function ContentDetails() {
   }
   return (
     <div className="ContentDetails">
-      <img
+      <LazyLoadImage
         src={`https://image.tmdb.org/t/p/original${mediaContentDetails.poster_path}`}
         alt="cover"
         className="CoverImage"
-      ></img>
+        effect="blur"
+      ></LazyLoadImage>
       <h1>
         {mediaContentDetails.title
           ? mediaContentDetails.title
