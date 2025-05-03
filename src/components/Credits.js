@@ -3,9 +3,12 @@ import { FetchData } from "../HelperFunctions";
 import { useParams } from "react-router-dom";
 import UnknownIcon from "../assets/icon-unknown.svg";
 import "./styling/css/Credits.css";
+
 function Credits() {
   const { mediaType, id } = useParams();
   const [credits, setCredits] = useState({ cast: [] });
+  const [loading, setLoading] = useState(true); // Added loading state
+
   const openNewTab = (item) => {
     const url = `https://www.themoviedb.org/person/${
       item.id
@@ -15,43 +18,59 @@ function Credits() {
       .join("-")}`;
     window.open(url, "_blank");
   };
-  const mappedCredits = credits.cast.slice(0, 6).map((item) => {
-    return (
-      <div
-        className="Profile-Card"
-        key={item.cast_id}
-        onClick={() => openNewTab(item)}
-      >
-        {item.profile_path ? (
-          <img
-            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${item.profile_path}`}
-            alt="profile"
-          />
-        ) : (
-          <img src={UnknownIcon} alt="profile" />
-        )}
-        <div className="Actor-Details">
-          <div className="Name">{item.name}</div>
-          <div className="Caracter"><span>Playing: </span>{item.character}</div>
+
+  // Mapping credits to display
+  const mappedCredits = credits.cast.slice(0, 6).map((item) => (
+    <div
+      className="Profile-Card"
+      key={item.cast_id}
+      onClick={() => openNewTab(item)}
+    >
+      <img
+        src={
+          item.profile_path
+            ? `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${item.profile_path}`
+            : UnknownIcon
+        }
+        alt={item.name}
+        loading="lazy" // Lazy load images
+      />
+      <div className="Actor-Details">
+        <div className="Name">{item.name}</div>
+        <div className="Character">
+          <span>Playing: </span>
+          {item.character}
         </div>
       </div>
-    );
-  });
+    </div>
+  ));
+
+  // Fetch credits data
   useEffect(() => {
     const optionsCredits = {
       method: "GET",
       url: `https://api.themoviedb.org/3/${mediaType}/${id}/credits?language=en-US`,
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzYwYzMxZTEzYjI5MTQ5YzQ1MWY5N2I2ZTU5YTY4MCIsInN1YiI6IjY0ZDM5ODE2ZDEwMGI2MDBlMjY3OGQ4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pPFH4HfP8rNHFUWKvoFXRLlK6ifiRdGT3AAPgzX_Ht4",
+        Authorization: "Bearer YOUR_API_KEY_HERE", // Make sure to use a secure API key management approach
       },
     };
 
-    FetchData(optionsCredits, setCredits);
+    setLoading(true); // Set loading to true before fetching
+
+    FetchData(optionsCredits, (data) => {
+      setCredits(data); // Set fetched data
+      setLoading(false); // Set loading to false after data is fetched
+    }).catch((error) => {
+      console.error(error);
+      setLoading(false); // Set loading to false if there's an error
+    });
   }, [mediaType, id]);
-  if(credits.cast.length < 1)
-    return null;
+
+  // Show loading or fallback if no credits are available
+  if (loading) return <div>Loading...</div>;
+  if (credits.cast.length < 1) return <div>No Cast Information Available</div>;
+
   return (
     <div className="Credits">
       <h1>Top Casts</h1>

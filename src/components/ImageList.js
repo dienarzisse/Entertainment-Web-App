@@ -3,19 +3,17 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FetchData } from "../HelperFunctions";
 import { useParams } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./styling/css/ImageList.css";
+
+const placeholderImage = "https://via.placeholder.com/1280x720?text=Loading...";
 
 function ImageList() {
   const { mediaType, id } = useParams();
   const [imagesList, setImagesList] = useState({ backdrops: [] });
-  const mappedList = imagesList.backdrops.map((item, index) => (
-          <img
-            key={index}
-            src={`https://image.tmdb.org/t/p/original${item.file_path}`}
-            alt="media content"
-            loading="lazy"
-          />
-        ));
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const optionsImages = {
       method: "GET",
@@ -27,53 +25,51 @@ function ImageList() {
       },
     };
 
-    FetchData(optionsImages, setImagesList);
+    FetchData(optionsImages, (data) => {
+      setImagesList(data);
+      setLoading(false);
+    });
   }, [mediaType, id]);
 
   const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 1,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 1,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
+    superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 1 },
+    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 1 },
+    tablet: { breakpoint: { max: 1024, min: 464 }, items: 1 },
+    mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
-  if (imagesList.backdrops.length === 0) {
-    return null; // Do not render anything if there are no images
+  if (loading || imagesList.backdrops.length === 0) {
+    return null;
   }
 
   return (
     <div className="ImageList">
       <h1>Images</h1>
       <Carousel
-        swipeable={false}
-        draggable={false}
+        swipeable
+        draggable
         showDots={false}
         responsive={responsive}
-        ssr={false} // means to render carousel on server-side.
-        infinite={true}
+        ssr={false}
+        infinite
         autoPlay={false}
-        keyBoardControl={true}
+        keyBoardControl
         transitionDuration={500}
         containerClass="carousel-container"
-        // removeArrowOnDeviceType={["tablet", "mobile"]}
-        //deviceType={true}//{this.props.deviceType}
-        dotListClass="custom-dot-list-style"
-        className="location-jobs "
         itemClass="carousel-item"
       >
-        {mappedList}
+        {imagesList.backdrops.map((item, index) => (
+          <div key={index} className="ImageWrapper">
+            <LazyLoadImage
+              src={`https://image.tmdb.org/t/p/w1280${item.file_path}`}
+              alt="Media Content"
+              effect="blur"
+              placeholderSrc={placeholderImage}
+              onError={(e) => (e.target.src = placeholderImage)}
+              className="ImageListItem"
+            />
+          </div>
+        ))}
       </Carousel>
     </div>
   );

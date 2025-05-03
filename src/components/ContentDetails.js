@@ -1,19 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { GetLanguageName } from "../HelperFunctions";
-import { FetchData } from "../HelperFunctions";
-import { RoundStars } from "../HelperFunctions";
+import { GetLanguageName, FetchData, RoundStars } from "../HelperFunctions";
 import Stars from "react-stars";
 import IMDbIcon from "../assets/imdb-logo.svg";
 import HomeIcon from "../assets/home-logo.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./styling/css/ContentDetails.css";
+
+const placeholderImage = "https://via.placeholder.com/300x450?text=Loading...";
+
 function ContentDetails() {
   const { mediaType, id } = useParams();
-  const [mediaContentDetails, setmediaContentDetails] = useState(null);
-  const roundOneDecimal = (value) => {
-    return value.toFixed(1);
-  };
+  const [mediaContentDetails, setMediaContentDetails] = useState(null);
 
   useEffect(() => {
     const optionsDetails = {
@@ -26,98 +25,123 @@ function ContentDetails() {
       },
     };
 
-    FetchData(optionsDetails, setmediaContentDetails);
+    FetchData(optionsDetails, setMediaContentDetails);
   }, [mediaType, id]);
+
   if (!mediaContentDetails) {
-    return <div>Loading...</div>;
+    return <div className="ContentDetails">Loading content details...</div>;
   }
+
+  const {
+    title,
+    name,
+    tagline,
+    vote_average,
+    homepage,
+    imdb_id,
+    runtime,
+    original_language,
+    release_date,
+    status,
+    genres,
+    overview,
+    poster_path,
+  } = mediaContentDetails;
+
+  const ratingValue = Number((vote_average / 2).toFixed(1));
+
   return (
     <div className="ContentDetails">
       <LazyLoadImage
-        src={`https://image.tmdb.org/t/p/original${mediaContentDetails.poster_path}`}
-        alt="cover"
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+            : placeholderImage
+        }
+        alt={title || name}
         className="CoverImage"
         effect="blur"
-      ></LazyLoadImage>
-      <h1>
-        {mediaContentDetails.title
-          ? mediaContentDetails.title
-          : mediaContentDetails.name}
-      </h1>
-      <p>{mediaContentDetails.tagline}</p>
+        placeholderSrc={placeholderImage}
+      />
+
+      <h1>{title || name}</h1>
+      {tagline && <p className="Tagline">"{tagline}"</p>}
 
       <div className="Rating">
         <div className="RatingText">
-          {mediaContentDetails.homepage && (
-            <a
-              href={`${mediaContentDetails.homepage}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={HomeIcon} alt="IMDb"></img>
+          {homepage && (
+            <a href={homepage} target="_blank" rel="noreferrer">
+              <img src={HomeIcon} alt="Official Site" />
             </a>
           )}
-          {roundOneDecimal(mediaContentDetails.vote_average / 2)}
-          {mediaContentDetails.imdb_id && (
+          {ratingValue}
+          {imdb_id && (
             <a
-              href={`https://www.imdb.com/title/${mediaContentDetails.imdb_id}/`}
+              href={`https://www.imdb.com/title/${imdb_id}/`}
               target="_blank"
               rel="noreferrer"
             >
-              <img src={IMDbIcon} alt="IMDb"></img>
+              <img src={IMDbIcon} alt="IMDb" />
             </a>
           )}
         </div>
         <Stars
           count={5}
-          value={RoundStars(
-            roundOneDecimal(mediaContentDetails.vote_average / 2)
-          )}
+          value={RoundStars(ratingValue)}
           size={24}
-          color1={"#999"} // Unselected star color
-          color2={"#ffd700"} // Selected star color
-          half={true} // Enable half stars
+          color1="#999"
+          color2="#ffd700"
+          half
+          edit={false}
         />
       </div>
 
       <div className="BasicInfo">
-        <div className="Length">
-          <h2>Length</h2>
-          <span>{mediaContentDetails.runtime + " min."}</span>
-        </div>
-        <div className="Language">
-          <h2>Language</h2>
-          <span>{GetLanguageName(mediaContentDetails.original_language)}</span>
-        </div>
-        <div className="Year">
-          <h2>Year</h2>
-          <span>
-            {new Date(mediaContentDetails.release_date).getFullYear()}
-          </span>
-        </div>
-        <div className="Status">
-          <h2>Status</h2>
-          <span>{mediaContentDetails.status}</span>
-        </div>
+        {runtime && (
+          <div className="Length">
+            <h2>Length</h2>
+            <span>{runtime} min.</span>
+          </div>
+        )}
+        {original_language && (
+          <div className="Language">
+            <h2>Language</h2>
+            <span>{GetLanguageName(original_language)}</span>
+          </div>
+        )}
+        {release_date && (
+          <div className="Year">
+            <h2>Year</h2>
+            <span>{new Date(release_date).getFullYear()}</span>
+          </div>
+        )}
+        {status && (
+          <div className="Status">
+            <h2>Status</h2>
+            <span>{status}</span>
+          </div>
+        )}
       </div>
 
-      <div className="Genres">
-        <h2>Genres</h2>
-        <div className="GenresWrapper">
-          {mediaContentDetails.genres.map((item) => {
-            return (
-              <span key={item.id} className="Genre">
-                {item.name}
+      {genres?.length > 0 && (
+        <div className="Genres">
+          <h2>Genres</h2>
+          <div className="GenresWrapper">
+            {genres.map((genre) => (
+              <span key={genre.id} className="Genre">
+                {genre.name}
               </span>
-            );
-          })}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="Overview">
-        <h2>Synopsis</h2>
-        <p>{mediaContentDetails.overview}</p>
-      </div>
+      {overview && (
+        <div className="Overview">
+          <h2>Synopsis</h2>
+          <p>{overview}</p>
+        </div>
+      )}
     </div>
   );
 }
