@@ -1,0 +1,105 @@
+.LandingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  img {
+    margin-top: 3rem;
+    margin-bottom: 3.6875rem;
+  }
+  .LogIn,
+  .SignUp {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 0.625rem;
+    background: #161d2f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    h1 {
+      color: #fff;
+      /* Heading (L) */
+      font-family: Outfit;
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 300;
+      line-height: normal;
+      letter-spacing: -0.5px;
+      margin-bottom: 2.5rem;
+      margin-top: 1.5rem;
+    }
+    form {
+      width: 100%;
+      label {
+        display: none;
+      }
+      input[type="email"],
+      input[type="password"] {
+        cursor: pointer;
+        outline: none;
+        width: 100%;
+        height: 2.3125rem;
+        margin-bottom: 1.5rem;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-bottom: 1px solid #5a698f;
+        color: #fff;
+      }
+      //Placeholder of the e-mail and password
+      ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #fff;
+        opacity: 0.5;
+      }
+
+      :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: #fff;
+        opacity: 0.5;
+      }
+
+      ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: #fff;
+        opacity: 0.5;
+      }
+      // Hide placeholder when focused
+      input:focus::placeholder {
+        visibility: hidden;
+        opacity: 0;
+      }
+      input[type="submit"] {
+        width: 100%;
+        height: 3rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        outline: 1px solid transparent;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: #fc4747;
+
+        /* Body (M) */
+        color: #fff;
+        text-align: center;
+        font-family: Outfit;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+      }
+    }
+    p {
+      text-align: center;
+      width: 100%;
+      span {
+        margin-left: 0.5625rem;
+        color: #fc4747;
+        cursor: pointer;
+      }
+    }
+  }
+}

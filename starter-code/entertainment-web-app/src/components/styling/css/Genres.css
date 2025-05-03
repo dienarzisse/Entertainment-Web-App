@@ -1,8 +1,0 @@
-.Genres {
-  width: 100%;
-  display: grid;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  place-items: center;
-  gap: 1rem;
-}/*# sourceMappingURL=Genres.css.map */

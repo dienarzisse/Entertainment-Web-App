@@ -1,0 +1,17 @@
+.SimilarContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  h1{
+    margin-bottom: 1rem;
+  }
+  .SimilarContentMap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}

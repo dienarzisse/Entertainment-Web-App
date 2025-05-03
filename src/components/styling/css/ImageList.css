@@ -1,0 +1,17 @@
+.ImageList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ImageList h1 {
+  margin-bottom: 0.5rem;
+}
+.ImageList .carousel-container {
+  width: 100%;
+}
+.ImageList .carousel-container .carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+}/*# sourceMappingURL=ImageList.css.map */

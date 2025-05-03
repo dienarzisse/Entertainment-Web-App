@@ -1,0 +1,120 @@
+.MediaComponent nav,
+.Trending nav {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.MediaComponent .Link,
+.Trending .Link {
+  text-decoration: none;
+  color: #5a698f;
+}
+.MediaComponent .Header-Wrapper,
+.Trending .Header-Wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.MediaComponent .Header-Wrapper h1,
+.Trending .Header-Wrapper h1 {
+  font-size: 1.75rem;
+  letter-spacing: -0.0195rem;
+}
+.MediaComponent .Header-Wrapper .Media-Type,
+.Trending .Header-Wrapper .Media-Type {
+  text-transform: uppercase;
+  font-size: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+}
+
+.MediaComponent {
+  max-width: 100%;
+  padding: 1rem;
+  padding-top: 0;
+  box-sizing: border-box;
+}
+.MediaComponent .Container {
+  max-width: 100%;
+}
+.MediaComponent .Container .ContentContainer {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+  box-sizing: border-box;
+}
+.MediaComponent .Container .ContentContainer .Content {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.MediaComponent .Container .ContentContainer .Content .Background {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.Trending {
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0;
+  overflow: hidden;
+}
+.Trending .Container {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  /* Scrollbar Styles */
+}
+.Trending .Container::-webkit-scrollbar {
+  width: 20px;
+}
+.Trending .Container::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.Trending .Container::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: hsl(223, 25%, 35%);
+}
+.Trending .Container::-webkit-scrollbar-thumb:hover {
+  background: hsl(223, 25%, 55%);
+}
+.Trending .ContentContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+.Trending .ContentContainer .Content .Background {
+  max-width: 75vw;
+}
+.Trending .ContentContainer .Content .Year-Type-Wrapper {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 1rem;
+}
+.Trending .ContentContainer .Content .Age {
+  position: absolute;
+  bottom: 3.5375rem;
+  right: 1rem;
+}
+.Trending .ContentContainer .Content .Name {
+  position: absolute;
+  bottom: 3.5625rem;
+  left: 1rem;
+}
+.Trending .ContentContainer .Content .Rating {
+  position: absolute;
+  bottom: 4.5625rem;
+  left: 1rem;
+}/*# sourceMappingURL=MediaComponent.css.map */

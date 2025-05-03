@@ -1,0 +1,1146 @@
+.mobileHomeFullChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 375px;
+  height: 56px;
+}
+
+.searchForMovies {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: 15.56%;
+  font-weight: 300;
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.searchIcon {
+  position: absolute;
+  height: 100%;
+  width: 9.34%;
+  top: 0;
+  right: 90.66%;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.searchForMoviesOrParent {
+  position: absolute;
+  top: 80px;
+  left: 16px;
+  width: 257px;
+  height: 24px;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+.trending {
+  position: absolute;
+  top: calc(50% - 90.5px);
+  left: 0;
+  letter-spacing: -0.31px;
+  font-weight: 300;
+}
+
+.groupChild,
+.rectangleIcon {
+  position: absolute;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.rectangleIcon {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-5xs);
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.groupChild {
+  height: 22.86%;
+  width: 13.33%;
+  top: 5.71%;
+  right: 3.33%;
+  bottom: 71.43%;
+  left: 83.33%;
+}
+
+.rectangleCopy4 {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  top: 50%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 0 0 var(--br-5xs) var(--br-5xs);
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.75));
+}
+
+.div,
+.movie {
+  position: absolute;
+  top: calc(50% - 7.5px);
+  left: 0;
+  font-weight: 300;
+  opacity: 0.75;
+  mix-blend-mode: normal;
+}
+
+.movie {
+  left: 35.29%;
+}
+
+.movieParent,
+.shape2Icon {
+  position: absolute;
+  overflow: hidden;
+}
+
+.shape2Icon {
+  height: 80%;
+  width: 23.53%;
+  top: 13.33%;
+  right: 76.47%;
+  bottom: 6.67%;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.movieParent {
+  height: 100%;
+  width: 53.13%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 46.88%;
+}
+
+.oval {
+  position: absolute;
+  height: 20%;
+  width: 3.13%;
+  top: 40%;
+  right: 61.46%;
+  bottom: 40%;
+  left: 35.42%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.beyondEarth,
+.parent {
+  position: absolute;
+  left: 0;
+}
+
+.parent {
+  height: 39.47%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 60.53%;
+  overflow: hidden;
+}
+
+.beyondEarth {
+  top: calc(50% - 0px);
+  font-size: var(--font-size-mini);
+  font-weight: 500;
+}
+
+.frameParent {
+  position: absolute;
+  height: 27.14%;
+  width: 40%;
+  top: 61.43%;
+  right: 53.33%;
+  bottom: 11.43%;
+  left: 6.67%;
+  overflow: hidden;
+}
+
+.rectangle {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--br-2xs-5);
+  background-color: var(--pure-white);
+  opacity: 0.15;
+  mix-blend-mode: normal;
+}
+
+.group,
+.pg,
+.rectangle {
+  position: absolute;
+}
+
+.pg {
+  top: calc(50% - 8.5px);
+  left: 23.53%;
+  font-weight: 300;
+}
+
+.group {
+  height: 15%;
+  width: 14.17%;
+  top: 67.86%;
+  right: 6.67%;
+  bottom: 17.14%;
+  left: 79.17%;
+  overflow: hidden;
+  text-align: center;
+  font-size: var(--body-s-size);
+}
+
+.group5CopyChild,
+.rectangleParent {
+  position: absolute;
+  height: 100%;
+  width: 48.39%;
+  top: 0;
+  right: 51.61%;
+  bottom: 0;
+  left: 0;
+}
+
+.group5CopyChild {
+  height: 22.86%;
+  width: 13.33%;
+  top: 35%;
+  right: -103.33%;
+  bottom: 42.14%;
+  left: 190%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.group5Copy,
+.groupParent {
+  position: absolute;
+  height: 100%;
+  width: 48.39%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 51.61%;
+}
+
+.groupParent {
+  height: 77.35%;
+  width: 100%;
+  top: 22.65%;
+  left: 0;
+  font-size: var(--font-size-xs);
+}
+
+.trendingParent {
+  position: absolute;
+  top: 128px;
+  left: 16px;
+  width: 496px;
+  height: 181px;
+  overflow: hidden;
+}
+
+.recommendedForYou {
+  position: absolute;
+  top: 333px;
+  left: 16px;
+  letter-spacing: -0.31px;
+  font-weight: 300;
+}
+
+.rectangleIcon1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-5xs);
+  width: 164px;
+  height: 110px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.groupItem {
+  position: absolute;
+  top: 8px;
+  left: 124px;
+  width: 32px;
+  height: 32px;
+}
+
+.div2 {
+  top: calc(50% - 7px);
+  left: 0;
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+.div2,
+.e,
+.ovalCopy2 {
+  position: absolute;
+  mix-blend-mode: normal;
+}
+
+.e {
+  top: calc(50% - 7px);
+  left: 53.33%;
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+.ovalCopy2 {
+  height: 14.29%;
+  width: 13.33%;
+  top: 42.86%;
+  right: 86.67%;
+  bottom: 42.86%;
+  left: 0;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+}
+
+.eParent {
+  position: absolute;
+  height: 100%;
+  width: 14.56%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 85.44%;
+  overflow: hidden;
+}
+
+.movie2 {
+  position: absolute;
+  top: calc(50% - 7px);
+  left: 31.82%;
+  font-weight: 300;
+  opacity: 0.75;
+  mix-blend-mode: normal;
+}
+
+.movieContainer,
+.shape2Icon2 {
+  position: absolute;
+  overflow: hidden;
+}
+
+.shape2Icon2 {
+  height: 71.43%;
+  width: 22.73%;
+  top: 14.29%;
+  right: 77.27%;
+  bottom: 14.29%;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.movieContainer {
+  height: 100%;
+  width: 42.72%;
+  top: 0;
+  right: 20.39%;
+  bottom: 0;
+  left: 36.89%;
+}
+
+.oval2 {
+  position: absolute;
+  height: 14.29%;
+  width: 1.94%;
+  top: 42.86%;
+  right: 68.93%;
+  bottom: 42.86%;
+  left: 29.13%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.groupDiv {
+  position: absolute;
+  height: 38.89%;
+  width: 98.1%;
+  top: 0;
+  right: 1.9%;
+  bottom: 61.11%;
+  left: 0;
+  overflow: hidden;
+}
+
+.theGreatLands {
+  position: absolute;
+  top: calc(50% - 0px);
+  left: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.frameContainer,
+.frameWrapper,
+.rectangleGroup {
+  position: absolute;
+  left: 0;
+  width: 105px;
+  height: 36px;
+}
+
+.frameContainer {
+  top: 0;
+  overflow: hidden;
+}
+
+.frameWrapper,
+.rectangleGroup {
+  top: 118px;
+}
+
+.rectangleGroup {
+  top: 0;
+  width: 164px;
+  height: 154px;
+}
+
+.ovalCopy21,
+.pg2 {
+  position: absolute;
+  mix-blend-mode: normal;
+}
+
+.pg2 {
+  top: calc(50% - 7px);
+  left: 33.33%;
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+.ovalCopy21 {
+  height: 14.29%;
+  width: 8.33%;
+  top: 42.86%;
+  right: 91.67%;
+  bottom: 42.86%;
+  left: 0;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+}
+
+.pgParent {
+  position: absolute;
+  height: 100%;
+  width: 18.46%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 81.54%;
+  overflow: hidden;
+}
+
+.tvSeries {
+  position: absolute;
+  width: 77.05%;
+  top: calc(50% - 7px);
+  left: 22.95%;
+  font-weight: 300;
+  display: inline-block;
+  opacity: 0.75;
+  mix-blend-mode: normal;
+}
+
+.shape3Icon {
+  position: absolute;
+  height: 51.02%;
+  width: 16.39%;
+  top: 24.49%;
+  right: 83.61%;
+  bottom: 24.49%;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.tvSeriesParent {
+  height: 100%;
+  width: 46.92%;
+  top: 0;
+  right: 23.08%;
+  bottom: 0;
+  left: 30%;
+  overflow: hidden;
+}
+
+.oval3,
+.parent1,
+.tvSeriesParent {
+  position: absolute;
+}
+
+.oval3 {
+  height: 14.29%;
+  width: 1.54%;
+  top: 42.86%;
+  right: 75.38%;
+  bottom: 42.86%;
+  left: 23.08%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.parent1 {
+  height: 38.89%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 61.11%;
+  left: 0;
+  overflow: hidden;
+}
+
+.frameParent1,
+.group9Copy,
+.group9CopyInner {
+  position: absolute;
+  left: 0;
+  width: 130px;
+  height: 36px;
+}
+
+.frameParent1 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy,
+.group9CopyInner {
+  top: 118px;
+}
+
+.group9Copy {
+  top: 0;
+  left: 179px;
+  width: 164px;
+  height: 154px;
+}
+
+.movieParent1 {
+  height: 100%;
+  width: 38.94%;
+  top: 0;
+  right: 27.43%;
+  bottom: 0;
+  left: 33.63%;
+  overflow: hidden;
+}
+
+.movieParent1,
+.oval4,
+.parent2 {
+  position: absolute;
+}
+
+.oval4 {
+  height: 14.29%;
+  width: 1.77%;
+  top: 42.86%;
+  right: 71.68%;
+  bottom: 42.86%;
+  left: 26.55%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.parent2 {
+  height: 38.89%;
+  width: 97.41%;
+  top: 0;
+  right: 2.59%;
+  bottom: 61.11%;
+  left: 0;
+  overflow: hidden;
+}
+
+.frameParent2,
+.group9Copy3,
+.group9Copy3Inner {
+  position: absolute;
+  left: 0;
+  width: 116px;
+  height: 36px;
+}
+
+.frameParent2 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy3,
+.group9Copy3Inner {
+  top: 118px;
+}
+
+.group9Copy3 {
+  top: 170px;
+  width: 164px;
+  height: 154px;
+}
+
+.frameParent3,
+.group9Copy2Inner {
+  position: absolute;
+  left: 0;
+  width: 103px;
+  height: 36px;
+}
+
+.frameParent3 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy2Inner {
+  top: 118px;
+}
+
+.group9Copy2,
+.pgGroup {
+  position: absolute;
+  top: 170px;
+  left: 179px;
+  width: 164px;
+  height: 154px;
+}
+
+.pgGroup {
+  height: 100%;
+  width: 18.6%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 81.4%;
+  overflow: hidden;
+}
+
+.tvSeries1 {
+  position: absolute;
+  top: calc(50% - 7px);
+  left: 22.95%;
+  font-weight: 300;
+  opacity: 0.75;
+  mix-blend-mode: normal;
+}
+
+.shape3Icon1,
+.tvSeriesGroup {
+  position: absolute;
+  overflow: hidden;
+}
+
+.shape3Icon1 {
+  height: 71.43%;
+  width: 16.39%;
+  top: 14.29%;
+  right: 83.61%;
+  bottom: 14.29%;
+  left: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.tvSeriesGroup {
+  height: 100%;
+  width: 47.29%;
+  top: 0;
+  right: 23.26%;
+  bottom: 0;
+  left: 29.46%;
+}
+
+.oval6 {
+  position: absolute;
+  height: 14.29%;
+  width: 1.55%;
+  top: 42.86%;
+  right: 75.19%;
+  bottom: 42.86%;
+  left: 23.26%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.frameParent4,
+.group9Copy7Inner {
+  position: absolute;
+  left: 0;
+  width: 129px;
+  height: 36px;
+}
+
+.frameParent4 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy7Inner {
+  top: 118px;
+}
+
+.group9Copy7,
+.group9Copy8 {
+  position: absolute;
+  top: 340px;
+  left: 0;
+  width: 164px;
+  height: 154px;
+}
+
+.group9Copy8 {
+  left: 179px;
+}
+
+.eContainer,
+.movieParent3 {
+  position: absolute;
+  height: 100%;
+  width: 14.42%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 85.58%;
+  overflow: hidden;
+}
+
+.movieParent3 {
+  width: 42.31%;
+  right: 21.15%;
+  left: 36.54%;
+}
+
+.oval8 {
+  position: absolute;
+  height: 14.29%;
+  width: 1.92%;
+  top: 42.86%;
+  right: 69.23%;
+  bottom: 42.86%;
+  left: 28.85%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.frameParent6,
+.group9Copy5Inner {
+  position: absolute;
+  left: 0;
+  width: 104px;
+  height: 36px;
+}
+
+.frameParent6 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy5Inner {
+  top: 118px;
+}
+
+.group9Copy5,
+.pgContainer {
+  position: absolute;
+  top: 510px;
+  left: 0;
+  width: 164px;
+  height: 154px;
+}
+
+.pgContainer {
+  height: 100%;
+  width: 21.24%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 78.76%;
+  overflow: hidden;
+}
+
+.frameParent7,
+.group9Copy12Inner {
+  position: absolute;
+  left: 0;
+  width: 113px;
+  height: 36px;
+}
+
+.frameParent7 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy12Inner {
+  top: 118px;
+}
+
+.group9Copy12,
+.group9Copy16 {
+  position: absolute;
+  top: 1020px;
+  left: 0;
+  width: 164px;
+  height: 154px;
+}
+
+.group9Copy16 {
+  top: 1360px;
+}
+
+.movieParent6,
+.parent12 {
+  position: absolute;
+  height: 100%;
+  width: 21.43%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 78.57%;
+  overflow: hidden;
+}
+
+.movieParent6 {
+  width: 39.29%;
+  right: 26.79%;
+  left: 33.93%;
+}
+
+.oval11 {
+  position: absolute;
+  height: 14.29%;
+  width: 1.79%;
+  top: 42.86%;
+  right: 71.43%;
+  bottom: 42.86%;
+  left: 26.79%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.frameParent9,
+.group9Copy21Inner {
+  position: absolute;
+  left: 0;
+  width: 112px;
+  height: 36px;
+}
+
+.frameParent9 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy21Inner {
+  top: 118px;
+}
+
+.group9Copy13,
+.group9Copy14,
+.group9Copy21,
+.group9Copy4 {
+  position: absolute;
+  top: 1700px;
+  left: 179px;
+  width: 164px;
+  height: 154px;
+}
+
+.group9Copy13,
+.group9Copy14,
+.group9Copy4 {
+  top: 1020px;
+}
+
+.group9Copy14,
+.group9Copy4 {
+  top: 1190px;
+  left: 0;
+}
+
+.group9Copy4 {
+  top: 510px;
+  left: 179px;
+}
+
+.eParent3,
+.tvSeriesParent2 {
+  position: absolute;
+  height: 100%;
+  width: 12.4%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 87.6%;
+  overflow: hidden;
+}
+
+.tvSeriesParent2 {
+  width: 50.41%;
+  right: 18.18%;
+  left: 31.4%;
+}
+
+.oval15 {
+  position: absolute;
+  height: 14.29%;
+  width: 1.65%;
+  top: 42.86%;
+  right: 73.55%;
+  bottom: 42.86%;
+  left: 24.79%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.frameParent13,
+.group9Copy11Inner {
+  position: absolute;
+  left: 0;
+  width: 121px;
+  height: 36px;
+}
+
+.frameParent13 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy11Inner {
+  top: 118px;
+}
+
+.group9Copy10,
+.group9Copy11,
+.group9Copy9,
+.tvSeriesParent4 {
+  position: absolute;
+  top: 680px;
+  left: 0;
+  width: 164px;
+  height: 154px;
+}
+
+.group9Copy10,
+.group9Copy9,
+.tvSeriesParent4 {
+  left: 179px;
+}
+
+.group9Copy9,
+.tvSeriesParent4 {
+  top: 850px;
+  left: 0;
+}
+
+.tvSeriesParent4 {
+  height: 100%;
+  width: 61.62%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 38.38%;
+  overflow: hidden;
+}
+
+.oval18 {
+  position: absolute;
+  height: 14.29%;
+  width: 2.02%;
+  top: 42.86%;
+  right: 67.68%;
+  bottom: 42.86%;
+  left: 30.3%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.parent21,
+.pgParent3 {
+  position: absolute;
+  height: 38.89%;
+  width: 76.15%;
+  top: 0;
+  right: 23.85%;
+  bottom: 61.11%;
+  left: 0;
+  overflow: hidden;
+}
+
+.pgParent3 {
+  width: 18.46%;
+  right: 0;
+  left: 81.54%;
+}
+
+.group9Copy15 {
+  position: absolute;
+  top: 1190px;
+  left: 179px;
+  width: 164px;
+  height: 154px;
+}
+
+.group9Copy17,
+.group9Copy20,
+.group9Copy22,
+.group9Copy23 {
+  position: absolute;
+  top: 1360px;
+  left: 179px;
+  width: 164px;
+  height: 154px;
+}
+
+.group9Copy20,
+.group9Copy22,
+.group9Copy23 {
+  top: 1700px;
+  left: 0;
+}
+
+.group9Copy22,
+.group9Copy23 {
+  top: 1870px;
+  left: 179px;
+}
+
+.group9Copy22 {
+  left: 0;
+}
+
+.eParent4,
+.tvSeriesParent8 {
+  position: absolute;
+  height: 100%;
+  width: 12.5%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 87.5%;
+  overflow: hidden;
+}
+
+.tvSeriesParent8 {
+  width: 50.83%;
+  right: 17.5%;
+  left: 31.67%;
+}
+
+.oval23 {
+  position: absolute;
+  height: 14.29%;
+  width: 1.67%;
+  top: 42.86%;
+  right: 73.33%;
+  bottom: 42.86%;
+  left: 25%;
+  border-radius: 50%;
+  background-color: var(--pure-white);
+  opacity: 0.5;
+  mix-blend-mode: normal;
+}
+
+.frameParent21,
+.group9Copy18Inner {
+  position: absolute;
+  left: 0;
+  width: 120px;
+  height: 36px;
+}
+
+.frameParent21 {
+  top: 0;
+  overflow: hidden;
+}
+
+.group9Copy18Inner {
+  top: 118px;
+}
+
+.group9Copy18,
+.group9Copy19,
+.group9Copy6,
+.groupContainer {
+  position: absolute;
+  top: 1530px;
+  left: 0;
+  width: 164px;
+  height: 154px;
+}
+
+.group9Copy19,
+.group9Copy6,
+.groupContainer {
+  left: 179px;
+}
+
+.group9Copy6,
+.groupContainer {
+  top: 850px;
+}
+
+.groupContainer {
+  top: 382px;
+  left: 16px;
+  width: 343px;
+  height: 2024px;
+  font-size: var(--font-size-2xs);
+}
+
+.mobileHomeFull {
+  position: relative;
+  background-color: var(--dark-blue);
+  width: 100%;
+  height: 2467px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--pure-white);
+  font-family: var(--body-s);
+}/*# sourceMappingURL=MobileHomeFull.css.map */

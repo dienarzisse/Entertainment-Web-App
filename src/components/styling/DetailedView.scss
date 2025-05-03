@@ -1,0 +1,42 @@
+.DetailedView {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  .Header-Wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    h1 {
+      font-size: 1.75rem;
+      letter-spacing: -0.0195rem;
+    }
+  }
+  .ContentContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .Pages{
+    .Previous, .Next{
+        background-color: transparent;
+        color: #fff;
+        width: 6rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        margin: 0 1rem;
+    }
+    .Previous:hover, .Next:hover{
+        color: black;
+        background-color: #fff;
+        cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.NavBar {
+  width: 100%;
+  background-color: #161D2F;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.125rem 1rem;
+  .Logo {
+    width: 1.5625rem;
+    height: 1.25rem;
+    cursor: pointer;
+  }
+  .CenterNavGroup{
+    width: 8.346rem;
+    height: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .NavSelected{
+        filter: brightness(0) saturate(100%) invert(100%) sepia(98%) saturate(0%) hue-rotate(355deg) brightness(102%) contrast(106%);
+    }
+    img{
+        cursor: pointer;
+    }
+  }
+  .Avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid #fff;
+    cursor: pointer;
+  }
+}

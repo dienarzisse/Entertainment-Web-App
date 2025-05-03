@@ -1,0 +1,67 @@
+.Trending {
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0;
+  overflow: hidden;
+}
+.Trending h1 {
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.0195rem;
+  margin-bottom: 1rem;
+}
+.Trending .Container {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  /* Scrollbar Styles */
+}
+.Trending .Container::-webkit-scrollbar {
+  width: 20px;
+}
+.Trending .Container::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.Trending .Container::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: hsl(223, 25%, 35%);
+}
+.Trending .Container::-webkit-scrollbar-thumb:hover {
+  background: hsl(223, 25%, 55%);
+}
+.Trending .ContentContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+.Trending .ContentContainer .Content .Year {
+  position: absolute;
+  top: 5.375rem;
+  left: 1rem;
+}
+.Trending .ContentContainer .Content .Type {
+  position: absolute;
+  top: 5.375rem;
+  left: 3.8125rem;
+}
+.Trending .ContentContainer .Content .Age {
+  position: absolute;
+  top: 5.9375rem;
+  right: 1rem;
+  width: 2.125rem;
+  height: 1.3125rem;
+  border-radius: 10.5px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.Trending .ContentContainer .Content .Name {
+  position: absolute;
+  top: 6.5625rem;
+  left: 1rem;
+}/*# sourceMappingURL=Trending.css.map */
