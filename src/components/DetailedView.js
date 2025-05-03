@@ -4,24 +4,34 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./styling/css/DetailedView.css";
 
 const DetailedView = () => {
-  const { mediaType, genre_id, genre_name, category, page } = useParams();
-  const navigate = useNavigate();
+  const { mediaType, genre_id, genre_name, category, page, keyword } =
+    useParams();
 
+  const navigate = useNavigate();
   const initialPage = Number(page) || 1;
   const [currentPage, setCurrentPage] = useState(initialPage);
 
   useEffect(() => {
-    // Sync state if URL param changes
     setCurrentPage(Number(page) || 1);
   }, [page]);
 
   const goToPage = (newPage) => {
     setCurrentPage(newPage);
-    const isCategory = category && category !== "";
 
-    const path = isCategory
-      ? `/${mediaType}/${category}/details/${newPage}`
-      : `/${mediaType}/genre/${genre_id}/${genre_name}/${newPage}`;
+    let path;
+
+    if (keyword) {
+      // e.g., /search/snow/2
+      path = `/search/${keyword}/${newPage}`;
+    } else if (category) {
+      // e.g., /movie/popular/details/2
+      path = `/${mediaType}/${category}/details/${newPage}`;
+    } else if (genre_id && genre_name) {
+      // e.g., /tv/genre/12/Comedy/2
+      path = `/${mediaType}/genre/${genre_id}/${genre_name}/${newPage}`;
+    } else {
+      path = "/";
+    }
 
     navigate(path);
     window.scrollTo(0, 0);
@@ -34,6 +44,7 @@ const DetailedView = () => {
         category={category}
         genre_id={genre_id}
         genre_name={genre_name}
+        keyword={keyword}
         page={currentPage}
       />
 
