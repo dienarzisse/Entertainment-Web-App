@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 import Stars from "react-stars";
 import { RoundStars } from "../HelperFunctions";
 import "./styling/css/Content.css";
-import ContentCover from "../assets/icon-unknown-content-cover.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+
+const placeholderImage = "https://via.placeholder.com/500x281?text=Loading...";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
@@ -20,7 +21,7 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
 
   const imageUrl = imgSrc
     ? `https://image.tmdb.org/t/p/w500${imgSrc}`
-    : ContentCover;
+    : placeholderImage;
 
   const handleClick = () => {
     navigate(`/${mediaType}/${id}`);
@@ -31,15 +32,16 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
     <div className="Content" ref={ref}>
       {inView && (
         <>
-          <LazyLoadImage
-            effect="blur"
-            src={imageUrl}
-            alt={name}
-            placeholderSrc={ContentCover}
-            className="Background"
-            draggable="false"
-            onClick={handleClick}
-          />
+          <div className="ImageWrapper" onClick={handleClick}>
+            <LazyLoadImage
+              src={imageUrl}
+              alt={name}
+              effect="blur"
+              placeholderSrc={placeholderImage}
+              className="Background"
+              draggable="false"
+            />
+          </div>
 
           <div className="Details">
             <div className="Year-Type-Wrapper">
