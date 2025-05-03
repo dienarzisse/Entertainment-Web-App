@@ -1,5 +1,6 @@
-.MediaComponent, .Trending{
-   nav {
+.MediaComponent,
+.Trending {
+  nav {
     width: 100%;
     padding: 1rem;
     display: flex;
@@ -7,47 +8,59 @@
     justify-content: space-between;
     align-items: center;
   }
-  .Link{
+  .Link {
     text-decoration: none;
-    color: #5A698F;
+    color: #5a698f;
   }
-  .Header-Wrapper{
+  .Header-Wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 1rem;
     h1 {
-    font-size: 1.75rem;
-    letter-spacing: -0.0195rem;
-  }
-  .Media-Type{
-    text-transform: uppercase;
-    font-size: 0.5rem;
-    padding: 0.5rem;
-    border: 1px solid #fff;
-    border-radius: 0.5rem;
-  }
+      font-size: 1.75rem;
+      letter-spacing: -0.0195rem;
+    }
+    .Media-Type {
+      text-transform: uppercase;
+      font-size: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #fff;
+      border-radius: 0.5rem;
+    }
   }
 }
 
 .MediaComponent {
-  width: 100%;
+  max-width: 100%;
   padding: 1rem;
   padding-top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .ContentContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+  box-sizing: border-box;
+
+  .Container {
+    max-width: 100%;
+
+    .ContentContainer {
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1rem;
+      box-sizing: border-box;
+
+      .Content {
+        max-width: 100%;
+        box-sizing: border-box;
+
+        .Background {
+          max-width: 100%;
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+    }
   }
 }
-
 
 // Trending own styling
 .Trending {
@@ -90,26 +103,29 @@
     gap: 1rem;
 
     .Content {
-      .Year-Type-Wrapper{
+      .Background {
+        max-width: 75vw;
+      }
+      .Year-Type-Wrapper {
         position: absolute;
-        top: 4.5rem;
+        bottom: 2.5rem;
         left: 1rem;
       }
 
       .Age {
         position: absolute;
-        top: 5.5375rem;
+        bottom: 3.5375rem;
         right: 1rem;
       }
 
       .Name {
         position: absolute;
-        top: 5.5625rem;
+        bottom: 3.5625rem;
         left: 1rem;
       }
-      .Rating{
+      .Rating {
         position: absolute;
-        top: 6.5625rem;
+        bottom: 4.5625rem;
         left: 1rem;
       }
     }

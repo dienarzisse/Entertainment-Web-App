@@ -1,9 +1,9 @@
 .Content {
-  max-width: 15rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
+  padding: 0.25rem;
   position: relative;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -12,7 +12,6 @@
           user-select: none;
 }
 .Content .Background {
-  max-height: 8.75rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 0.5rem;
@@ -85,9 +84,6 @@
   font-size: 0.8125rem;
   font-weight: 300;
 }
-.Content .ContentContainer {
-  background-color: red;
-}
 .Content .Name {
   display: block;
   max-width: calc(100% - 5rem);
@@ -99,8 +95,8 @@
 }
 .Content .BookmarkContainer {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 1rem;
+  right: 1rem;
   width: 2rem;
   height: 2rem;
   border-radius: 100%;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FetchData } from "../HelperFunctions";
 import { APIOPTIONS } from "../APIOptions";
@@ -18,9 +18,10 @@ function Genres() {
       />
     );
   });
-  useEffect(() => {
-    FetchData(APIOPTIONS.GenreList(mediaType), setList);
+  useMemo(() => {
+    FetchData(APIOPTIONS.getGenreList(mediaType), setList);
   }, [mediaType]);
+  
   return <div className="Genres">
     {mappedList}
   </div>;
