@@ -15,11 +15,10 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
   const [ref, inView] = useInView({ triggerOnce: true });
 
-  const imageSrc = imgSrc
+  const imageUrl = imgSrc
     ? `https://image.tmdb.org/t/p/w500${imgSrc}`
     : ContentCover;
 
@@ -32,17 +31,14 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
     <div className="Content" ref={ref}>
       {inView && (
         <>
-          {!imageLoaded && <div className="ImagePlaceholder">Loading...</div>}
-
           <LazyLoadImage
             effect="blur"
-            src={imageSrc}
+            src={imageUrl}
             alt={name}
+            placeholderSrc={ContentCover}
             className="Background"
             draggable="false"
             onClick={handleClick}
-            afterLoad={() => setImageLoaded(true)}
-            onError={() => setImageLoaded(true)} // prevent permanent loading on error
           />
 
           <div className="Details">
