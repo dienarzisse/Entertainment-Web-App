@@ -11,35 +11,40 @@ import { RoundStars } from "../HelperFunctions";
 import "./styling/css/Content.css";
 import ContentCover from "../assets/icon-unknown-content-cover.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
   const [bookmarked, setBookmarked] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const navigate = useNavigate();
+  const [ref, inView] = useInView({ triggerOnce: true });
+
+  const imageSrc = imgSrc
+    ? `https://image.tmdb.org/t/p/w500${imgSrc}`
+    : ContentCover;
 
   const handleClick = () => {
     navigate(`/${mediaType}/${id}`);
     window.scrollTo(0, 0);
   };
-  const [ref, inView] = useInView({
-    triggerOnce: true, // Load content only once when it becomes visible
-  });
 
   return (
     <div className="Content" ref={ref}>
       {inView && (
         <>
+          {!imageLoaded && <div className="ImagePlaceholder">Loading...</div>}
+
           <LazyLoadImage
-          effect="blur"
-            src={
-              imgSrc
-                ? `https://image.tmdb.org/t/p/original${imgSrc}`
-                : ContentCover
-            }
-            alt="movie"
+            effect="blur"
+            src={imageSrc}
+            alt={name}
             className="Background"
             draggable="false"
             onClick={handleClick}
+            afterLoad={() => setImageLoaded(true)}
+            onError={() => setImageLoaded(true)} // prevent permanent loading on error
           />
+
           <div className="Details">
             <div className="Year-Type-Wrapper">
               <div className="Year">{year}</div>
@@ -56,20 +61,23 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
               <p>{adult ? "18+" : "PG"}</p>
             </div>
           </div>
+
           <div className="Name" onClick={handleClick}>
             {name}
           </div>
+
           <div className="Rating">
             <Stars
               count={5}
               value={RoundStars(rating)}
               size={16}
-              color1={"#999"} // Unselected star color
-              color2={"#ffd700"} // Selected star color
-              half={true} // Enable half stars
+              color1={"#999"}
+              color2={"#ffd700"}
+              half={true}
               edit={false}
             />
           </div>
+
           <div
             className="BookmarkContainer"
             onClick={() => setBookmarked(!bookmarked)}
