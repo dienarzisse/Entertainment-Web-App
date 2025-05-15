@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FetchData } from "../HelperFunctions";
@@ -7,7 +7,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./styling/css/ImageList.css";
 
-const placeholderImage = "https://via.placeholder.com/1280x720?text=Loading...";
+const placeholderImage =
+  "https://i.pinimg.com/736x/64/eb/ef/64ebefbbd558d77f1a1e0d01a4e050c1.jpg";
 
 interface ImageItem {
   file_path: string;
@@ -35,7 +36,7 @@ const ImageList: React.FC = () => {
   });
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  useMemo(() => {
     if (!mediaType || !id) return;
 
     const optionsImages = {
@@ -68,17 +69,16 @@ const ImageList: React.FC = () => {
 
   return (
     <div className="ImageList">
-      <h1>Images</h1>
       <Carousel
         swipeable
         draggable
         showDots={false}
         responsive={responsive}
         ssr={false}
-        infinite
-        autoPlay={false}
-        keyBoardControl
-        transitionDuration={500}
+        infinite={true}
+        autoPlay={true}
+        arrows={false}
+        keyBoardControl={true}
         containerClass="carousel-container"
         itemClass="carousel-item"
       >

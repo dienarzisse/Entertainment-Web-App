@@ -7,8 +7,8 @@ import HomeIcon from "../assets/home-logo.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./styling/css/ContentDetails.css";
-
-const placeholderImage = "https://via.placeholder.com/300x450?text=Loading...";
+import Loading from "./Loading";
+import ImageList from "./ImageList";
 
 interface Genre {
   id: number;
@@ -28,7 +28,7 @@ interface MediaContentDetails {
   status?: string;
   genres?: Genre[];
   overview?: string;
-  poster_path?: string;
+  backdrop_path?: string;
 }
 
 function ContentDetails() {
@@ -38,6 +38,9 @@ function ContentDetails() {
 
   useEffect(() => {
     if (!mediaType || !id) return;
+
+    // Reset state on ID change to avoid showing stale content
+    setMediaContentDetails(null);
 
     const optionsDetails = {
       method: "GET",
@@ -53,7 +56,7 @@ function ContentDetails() {
   }, [mediaType, id]);
 
   if (!mediaContentDetails) {
-    return <div className="ContentDetails">Loading content details...</div>;
+    return <Loading />;
   }
 
   const {
@@ -69,29 +72,16 @@ function ContentDetails() {
     status,
     genres,
     overview,
-    poster_path,
   } = mediaContentDetails;
 
   const ratingValue = vote_average ? Number((vote_average / 2).toFixed(1)) : 0;
 
+  // TODO fix the placeholderimage
   return (
     <div className="ContentDetails">
-      <LazyLoadImage
-        src={
-          poster_path
-            ? `https://image.tmdb.org/t/p/w500${poster_path}`
-            : placeholderImage
-        }
-        alt={title || name || "Media Poster"}
-        className="CoverImage"
-        effect="blur"
-        placeholderSrc={placeholderImage}
-        draggable={false}
-      />
-
       <h1>{title || name}</h1>
+      <ImageList />
       {tagline && <p className="Tagline">"{tagline}"</p>}
-
       <div className="Rating">
         <div className="RatingText">
           {homepage && (
@@ -101,7 +91,11 @@ function ContentDetails() {
               rel="noopener noreferrer"
               aria-label="Official Website"
             >
-              <img src={HomeIcon} alt="Official Site" loading="lazy" />
+              <LazyLoadImage
+                src={HomeIcon}
+                alt="Official Site"
+                loading="lazy"
+              />
             </a>
           )}
           {ratingValue}
@@ -112,7 +106,7 @@ function ContentDetails() {
               rel="noopener noreferrer"
               aria-label="IMDb Page"
             >
-              <img src={IMDbIcon} alt="IMDb" loading="lazy" />
+              <LazyLoadImage src={IMDbIcon} alt="IMDb" loading="lazy" />
             </a>
           )}
         </div>

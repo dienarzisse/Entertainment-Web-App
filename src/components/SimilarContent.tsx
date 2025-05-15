@@ -45,7 +45,7 @@ function SimilarContent() {
     FetchData(optionsSimilar, setSimilarList).finally(() => setLoading(false));
   }, [mediaType, id]);
 
-  if (loading) return <Loading />;
+  if (loading) return null //<Loading />;
 
   // Filter out items without backdrop_path and map to Content components
   const mappedSimilarList = similarList.results

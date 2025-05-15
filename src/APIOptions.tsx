@@ -20,7 +20,7 @@ export const APIOPTIONS = {
   fetchData: async (options, setter) => {
     try {
       const response = await axios(options);
-      console.log(response)
+  
       const resultList =response.data.results
       setter(resultList);
     } catch (error) {

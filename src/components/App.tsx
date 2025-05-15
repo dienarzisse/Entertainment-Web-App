@@ -24,6 +24,8 @@ function App() {
   // Reflect changes in localStorage when signedIn changes
   useEffect(() => {
     localStorage.setItem("signedIn", JSON.stringify(signedIn));
+    // Scroll to the top on refresh
+    window.history.scrollRestoration = "manual";
   }, [signedIn]);
 
   // Tracks if user has an account or not (for login/signup toggling)

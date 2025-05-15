@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./styling/css/Providers.css";
+// TODO keys should be unique
 function Providers() {
   const { mediaType, id } = useParams();
   const [providersList, setProvidersList] = useState({ results: {} });
@@ -20,11 +22,11 @@ function Providers() {
       providers && providers.length > 0
         ? providers.map((provider, index) => (
             <a href={selectedProviders.link} target="_blank" rel="noreferrer">
-              <img
+              <LazyLoadImage
                 key={index}
                 src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
                 alt="provider"
-              ></img>
+              ></LazyLoadImage>
             </a>
           ))
         : null;

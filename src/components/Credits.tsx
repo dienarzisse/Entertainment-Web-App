@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
 import { FetchData } from "../HelperFunctions";
 import UnknownIcon from "../assets/icon-unknown.svg";
@@ -66,14 +67,14 @@ function Credits() {
             aria-label={`View profile of ${item.name}`}
           >
             {item.profile_path ? (
-              <img
+              <LazyLoadImage
                 src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${item.profile_path}`}
                 alt={`${item.name} profile`}
                 loading="lazy"
                 draggable={false}
               />
             ) : (
-              <img
+              <LazyLoadImage
                 src={UnknownIcon}
                 alt="Unknown profile"
                 loading="lazy"

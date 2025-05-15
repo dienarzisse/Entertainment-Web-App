@@ -73,15 +73,9 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
     fetchContent();
   }, [category, mediaType, page, genre_id, keyword]);
 
-  if (loading) return <Loading />;
+  //TODO
+  if (loading) return null; //<Loading />;
 
-  if (list.length === 0)
-    return (
-      <div className="MediaComponent">
-        <h2>No results found.</h2>
-      </div>
-    );
-  console.log(list)
   const mappedList = list.map((item) => (
     <Content
       key={item.id}
@@ -117,7 +111,7 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
   };
 
   return (
-    <div className={category === "trending" ? "Trending" : "MediaComponent"}>
+    <div className={category === "trending" && seeMore ? "Trending" : "MediaComponent"}>
       <nav>
         <div className="Header-Wrapper">
           <h1>{getHeaderTitle()}</h1>

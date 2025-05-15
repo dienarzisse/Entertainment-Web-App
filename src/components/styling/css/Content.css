@@ -25,6 +25,7 @@
   z-index: 0;
 }
 .Content .Background {
+  max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 0.5rem;

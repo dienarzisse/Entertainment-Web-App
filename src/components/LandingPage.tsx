@@ -1,4 +1,5 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Logo from "../assets/logo.svg";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
@@ -17,7 +18,7 @@ const LandingPage: React.FC<LandingPageProps> = ({
 }) => {
   return (
     <div className="LandingPage">
-      <img src={Logo} alt="logo" className="LandingPage-logo" />
+      <LazyLoadImage src={Logo} alt="logo" className="LandingPage-logo" />
       {hasAccount ? (
         <LogIn setHasAccount={setHasAccount} setSignedIn={setSignedIn} />
       ) : (

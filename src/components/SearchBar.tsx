@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import SearchIcon from "../assets/icon-search.svg";
 import "./styling/css/SearchBar.css";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +38,7 @@ function SearchBar() {
           type="submit"
           aria-label="Submit search"
         >
-          <img src={SearchIcon} alt="Search icon" />
+          <LazyLoadImage src={SearchIcon} alt="Search icon" />
         </button>
         <input
           className="search-input"

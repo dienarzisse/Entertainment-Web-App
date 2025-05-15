@@ -12,7 +12,7 @@ import "./styling/css/Content.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-// If no image is available
+// TODO If no image is available
 const placeholderImage =
   "https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg";
 
@@ -101,7 +101,7 @@ const Content: React.FC<ContentProps> = ({
               <div className="Year">{year}</div>
               <div className="Oval" />
               <div className="Type">
-                <img
+                <LazyLoadImage
                   src={mediaType === MEDIA_TYPES.MOVIE ? MovieIcon : TVIcon}
                   alt={mediaType === MEDIA_TYPES.MOVIE ? "Movie" : "TV Series"}
                   loading="lazy"
@@ -138,7 +138,7 @@ const Content: React.FC<ContentProps> = ({
             tabIndex={0}
             onKeyDown={handleBookmarkKeyPress}
           >
-            <img
+            <LazyLoadImage
               src={bookmarked ? BookmarkFullIcon : BookmarkEmptyIcon}
               alt="bookmark icon"
               className="Bookmark"

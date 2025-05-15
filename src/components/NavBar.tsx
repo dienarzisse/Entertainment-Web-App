@@ -1,40 +1,65 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
 import Logo from "../assets/logo.svg";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import HomeIcon from "../assets/icon-nav-home.svg";
 import MovieNavIcon from "../assets/icon-nav-movies.svg";
 import TVNavIcon from "../assets/icon-nav-tv-series.svg";
 import Avatar from "../assets/image-avatar.png";
 
 import "./styling/css/NavBar.css";
-import { useNavigate } from "react-router-dom";
 
-function NavBar() {
-  const navigate = useNavigate();
-
-  const handleClickHome = () => navigate(`/`);
-  const handleClickMovies = () => navigate(`/movie/genres`);
-  const handleClickTV = () => navigate(`/tv/genres`);
-
+const NavBar: React.FC = () => {
   return (
     <nav className="NavBar">
-      <img src={Logo} alt="logo" className="Logo" onClick={handleClickHome} />
+      {/* Logo always links home */}
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? "Logo NavSelected" : "Logo")}
+        aria-label="Go to Home"
+      >
+        <LazyLoadImage src={Logo} alt="logo" />
+      </NavLink>
+
       <div className="CenterNavGroup">
-        <img
-          src={HomeIcon}
-          alt="home nav icon"
-          className="NavSelected"
-          onClick={handleClickHome}
-        />
-        <img
-          src={MovieNavIcon}
-          alt="movie nav icon"
-          onClick={handleClickMovies}
-        />
-        <img src={TVNavIcon} alt="tv nav icon" onClick={handleClickTV} />
-        {/* <img src={BookmarkIcon} alt="bookmark nav icon" /> */}
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => (isActive ? "NavSelected" : "")}
+          aria-label="Go to Home"
+        >
+          <LazyLoadImage src={HomeIcon} alt="Home" />
+        </NavLink>
+
+        <NavLink
+          to="/movie/genres"
+          className={({ isActive }) =>
+            isActive || window.location.pathname.startsWith("/movie")
+              ? "NavSelected"
+              : ""
+          }
+          aria-label="Go to Movies"
+        >
+          <LazyLoadImage src={MovieNavIcon} alt="Movies" />
+        </NavLink>
+
+        <NavLink
+          to="/tv/genres"
+          className={({ isActive }) =>
+            isActive || window.location.pathname.startsWith("/tv")
+              ? "NavSelected"
+              : ""
+          }
+          aria-label="Go to TV Series"
+        >
+          <LazyLoadImage src={TVNavIcon} alt="TV Series" />
+        </NavLink>
       </div>
-      <img src={Avatar} alt="avatar" className="Avatar" />
+
+      <LazyLoadImage src={Avatar} alt="User Avatar" className="Avatar" />
     </nav>
   );
-}
+};
 
 export default NavBar;
