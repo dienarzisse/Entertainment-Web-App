@@ -2,15 +2,22 @@ import "./styling/css/LogIn.css";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-function LogIn({ setHasAccount, setSignedIn }) {
-  // States
+
+// Define prop types
+interface LogInProps {
+  setHasAccount: (value: boolean) => void;
+  setSignedIn: (value: boolean) => void;
+}
+
+function LogIn({ setHasAccount, setSignedIn }: LogInProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // Handlers
+
   const handleCreateAccount = () => {
     setHasAccount(false);
   };
-  const LogInHandler = (e) => {
+
+  const LogInHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
@@ -20,16 +27,13 @@ function LogIn({ setHasAccount, setSignedIn }) {
       .catch((error) => {
         console.log(error);
       });
+
     setEmail("");
     setPassword("");
   };
-  // Handle the state change
-  const handleEmail = (email) => {
-    setEmail(email);
-  };
-  const handlePassword = (password) => {
-    setPassword(password);
-  };
+
+  const handleEmail = (email: string) => setEmail(email);
+  const handlePassword = (password: string) => setPassword(password);
 
   return (
     <div className="LogIn">
@@ -43,9 +47,9 @@ function LogIn({ setHasAccount, setSignedIn }) {
           placeholder="Email address"
           id="email"
           name="email"
-          required="required"
-        ></input>
-        <br></br>
+          required
+        />
+        <br />
         <label htmlFor="pwd">Password:</label>
         <input
           value={password}
@@ -54,17 +58,18 @@ function LogIn({ setHasAccount, setSignedIn }) {
           placeholder="Password"
           id="pwd"
           name="pwd"
-          minLength="8"
-          required="required"
-        ></input>
-        <br></br>
-        <input type="submit" value="Login to your account"></input>
+          minLength={8}
+          required
+        />
+        <br />
+        <input type="submit" value="Login to your account" />
       </form>
       <p>
         Don’t have an account?
-        <span onClick={handleCreateAccount}>Sign Up</span>
+        <span onClick={handleCreateAccount}> Sign Up</span>
       </p>
     </div>
   );
 }
+
 export default LogIn;

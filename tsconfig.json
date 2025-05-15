@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": false,
+
+    // ADDED for gradual JS → TS migration:
+    "allowJs": true, // let TS compile .js/.jsx files
+    "checkJs": false // (optional) don’t report errors in JS files
+  },
+  "include": [
+    "src" // make sure this matches your folder structure
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,33 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MediaComponent from "./MediaComponent";
 import { useParams, useNavigate } from "react-router-dom";
 import "./styling/css/DetailedView.css";
 
-const DetailedView = () => {
-  const { mediaType, genre_id, genre_name, category, page, keyword } =
-    useParams();
+interface DetailedViewProps {
+  mediaType?: string;
+  genre_id?: string;
+  genre_name?: string;
+  category?: string;
+  page?: string;
+  keyword?: string;
+}
 
+const DetailedView: React.FC<DetailedViewProps> = ({
+  mediaType,
+  genre_id,
+  genre_name,
+  category,
+  page,
+  keyword,
+}) => {
   const navigate = useNavigate();
   const initialPage = Number(page) || 1;
-  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [currentPage, setCurrentPage] = React.useState(initialPage);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setCurrentPage(Number(page) || 1);
   }, [page]);
 
-  const goToPage = (newPage) => {
+  const goToPage = (newPage: number) => {
     setCurrentPage(newPage);
 
-    let path;
+    let path: string;
 
     if (keyword) {
-      // e.g., /search/snow/2
       path = `/search/${keyword}/${newPage}`;
     } else if (category) {
-      // e.g., /movie/popular/details/2
       path = `/${mediaType}/${category}/details/${newPage}`;
     } else if (genre_id && genre_name) {
-      // e.g., /tv/genre/12/Comedy/2
       path = `/${mediaType}/genre/${genre_id}/${genre_name}/${newPage}`;
     } else {
       path = "/";

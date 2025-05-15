@@ -14,8 +14,27 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 const placeholderImage = "https://via.placeholder.com/500x281?text=Loading...";
 
-const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
-  const [bookmarked, setBookmarked] = useState(false);
+// ✨ Define prop types
+interface ContentProps {
+  id: number | string;
+  imgSrc: string | null;
+  year: string | number;
+  name: string;
+  mediaType: string;
+  adult: boolean;
+  rating: number;
+}
+
+const Content: React.FC<ContentProps> = ({
+  id,
+  imgSrc,
+  year,
+  name,
+  mediaType,
+  adult,
+  rating,
+}) => {
+  const [bookmarked, setBookmarked] = useState<boolean>(false);
   const navigate = useNavigate();
   const [ref, inView] = useInView({ triggerOnce: true });
 
@@ -39,7 +58,7 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
               effect="blur"
               placeholderSrc={placeholderImage}
               className="Background"
-              draggable="false"
+              draggable={false}
             />
           </div>
 
@@ -69,8 +88,8 @@ const Content = ({ id, imgSrc, year, name, mediaType, adult, rating }) => {
               count={5}
               value={RoundStars(rating)}
               size={16}
-              color1={"#999"}
-              color2={"#ffd700"}
+              color1="#999"
+              color2="#ffd700"
               half={true}
               edit={false}
             />
