@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
         className={({ isActive }) => (isActive ? "Logo NavSelected" : "Logo")}
         aria-label="Go to Home"
       >
-        <LazyLoadImage src={Logo} alt="logo" />
+        <img src={Logo} alt="logo" />
       </NavLink>
 
       <div className="CenterNavGroup">

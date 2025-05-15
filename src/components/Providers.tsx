@@ -70,6 +70,9 @@ function Providers() {
                 src={`https://image.tmdb.org/t/p/original${provider.logo_path}`}
                 alt={provider.provider_name || "provider"}
                 effect="blur"
+                wrapperProps={{
+                  style: { transitionDelay: "0.5s" },
+                }}
                 draggable={false}
               />
             </a>

@@ -1,9 +1,10 @@
 import "./styling/css/App.css";
 import { useState, useEffect, lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import SearchBar from "./SearchBar";
+import Loading from "./Loading";
 
 const Home = lazy(() => import("./Home"));
 const DetailedView = lazy(() => import("./DetailedView"));
@@ -17,24 +18,29 @@ const LogIn = lazy(() => import("./LogIn"));
 function App() {
   const [signedIn, setSignedIn] = useState(() => {
     return true;
-    // const stored = localStorage.getItem("signedIn");
-    // return stored ? JSON.parse(stored) : false;
   });
 
   useEffect(() => {
     localStorage.setItem("signedIn", JSON.stringify(signedIn));
   }, [signedIn]);
 
+  // You can keep this if you want manual scroll restoration:
   useEffect(() => {
     window.history.scrollRestoration = "manual";
   }, []);
+
+  // Add this to scroll to top on route change
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const [hasAccount, setHasAccount] = useState(false);
 
   return (
     <div className="App">
       {!signedIn ? (
-        <Suspense fallback={<div className="LoadingScreen">Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           {hasAccount ? (
             <LogIn setSignedIn={setSignedIn} setHasAccount={setHasAccount} />
           ) : (
@@ -45,7 +51,7 @@ function App() {
         <>
           <NavBar />
           <SearchBar />
-          <Suspense fallback={<div className="LoadingScreen">Loading...</div>}>
+          <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route

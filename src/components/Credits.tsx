@@ -68,6 +68,10 @@ function Credits() {
           >
             {item.profile_path ? (
               <LazyLoadImage
+                effect="blur"
+                wrapperProps={{
+                  style: { transitionDelay: "0.5s" },
+                }}
                 src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${item.profile_path}`}
                 alt={`${item.name} profile`}
                 loading="lazy"
@@ -76,6 +80,10 @@ function Credits() {
             ) : (
               <LazyLoadImage
                 src={UnknownIcon}
+                effect="blur"
+                wrapperProps={{
+                  style: { transitionDelay: "0.5s" },
+                }}
                 alt="Unknown profile"
                 loading="lazy"
                 draggable={false}

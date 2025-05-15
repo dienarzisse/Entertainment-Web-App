@@ -1,0 +1,44 @@
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid transparent;
+  border-top: 6px solid #6c63ff;
+  border-right: 6px solid #00c6ff;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  margin: 3rem auto;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 198, 255, 0.3), 0 0 40px rgba(108, 99, 255, 0.3);
+}
+
+.spinner::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.05);
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.2), 0 0 15px rgba(0, 198, 255, 0.1);
+    opacity: 0.6;
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.4), 0 0 30px rgba(0, 198, 255, 0.2);
+    opacity: 1;
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.2), 0 0 15px rgba(0, 198, 255, 0.1);
+    opacity: 0.6;
+  }
+}/*# sourceMappingURL=Loading.css.map */

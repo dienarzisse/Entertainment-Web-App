@@ -1,4 +1,6 @@
 .Content {
+  width: 100%;
+  min-height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,19 +12,6 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-.Content .ImagePlaceholder {
-  background-color: #1f1f1f;
-  height: 140px;
-  border-radius: 12px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: #aaa;
-  position: absolute;
-  z-index: 0;
 }
 .Content .Background {
   max-width: 100%;

@@ -88,6 +88,9 @@ const ImageList: React.FC = () => {
               src={`https://image.tmdb.org/t/p/w1280${item.file_path}`}
               alt="Media Content"
               effect="blur"
+              wrapperProps={{
+                style: { transitionDelay: "0.1s" },
+              }}
               placeholderSrc={placeholderImage}
               onError={(e: ErrorEvent) => {
                 const target = e.target as HTMLImageElement;
