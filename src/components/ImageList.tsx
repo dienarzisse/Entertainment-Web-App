@@ -9,12 +9,35 @@ import "./styling/css/ImageList.css";
 
 const placeholderImage = "https://via.placeholder.com/1280x720?text=Loading...";
 
-function ImageList() {
-  const { mediaType, id } = useParams();
-  const [imagesList, setImagesList] = useState({ backdrops: [] });
+interface ImageItem {
+  file_path: string;
+}
+
+interface ImagesResponse {
+  backdrops: ImageItem[];
+}
+
+// Use this interface to access known param keys with optional values as strings
+interface Params {
+  mediaType?: string;
+  id?: string;
+}
+
+const ImageList: React.FC = () => {
+  // useParams returns Record<string, string | undefined> by default,
+  // so cast it to your interface explicitly to get type info,
+  // but keep values as strings or undefined
+  const params = useParams() as Params;
+  const { mediaType, id } = params;
+
+  const [imagesList, setImagesList] = useState<ImagesResponse>({
+    backdrops: [],
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!mediaType || !id) return;
+
     const optionsImages = {
       method: "GET",
       url: `https://api.themoviedb.org/3/${mediaType}/${id}/images`,
@@ -25,7 +48,8 @@ function ImageList() {
       },
     };
 
-    FetchData(optionsImages, (data) => {
+    setLoading(true);
+    FetchData(optionsImages, (data: ImagesResponse) => {
       setImagesList(data);
       setLoading(false);
     });
@@ -59,20 +83,25 @@ function ImageList() {
         itemClass="carousel-item"
       >
         {imagesList.backdrops.map((item, index) => (
-          <div key={index} className="ImageWrapper">
+          <div key={item.file_path || index} className="ImageWrapper">
             <LazyLoadImage
               src={`https://image.tmdb.org/t/p/w1280${item.file_path}`}
               alt="Media Content"
               effect="blur"
               placeholderSrc={placeholderImage}
-              onError={(e) => (e.target.src = placeholderImage)}
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null;
+                target.src = placeholderImage;
+              }}
               className="ImageListItem"
+              draggable={false}
             />
           </div>
         ))}
       </Carousel>
     </div>
   );
-}
+};
 
 export default ImageList;

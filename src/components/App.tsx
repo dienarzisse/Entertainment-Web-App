@@ -1,36 +1,39 @@
-import "./App.css";
+import "./styling/css/App.css";
 import { useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import SearchBar from "./components/SearchBar";
-const Home = lazy(() => import("./components/Home"));
-const DetailedView = lazy(() => import("./components/DetailedView"));
-const SearchView = lazy(() => import("./components/SearchView"));
-const Genres = lazy(() => import("./components/Genres"));
-const GenresList = lazy(() => import("./components/GenresList"));
-const MediaContentDetailPage = lazy(() =>
-  import("./components/MediaContentDetailPage")
-);
+
+import NavBar from "./NavBar";
+import SearchBar from "./SearchBar";
+
+const Home = lazy(() => import("./Home"));
+const DetailedView = lazy(() => import("./DetailedView"));
+const SearchView = lazy(() => import("./SearchView"));
+const Genres = lazy(() => import("./Genres"));
+const GenresList = lazy(() => import("./GenresList"));
+const MediaContentDetailPage = lazy(() => import("./MediaContentDetailPage"));
 
 function App() {
-  const [hasAccount, setHasAccount] = useState(true);
   const initialSignedIn = false;
 
-  // Retrieve the state from localStorage or use the initial value
+  // Persist signedIn state using localStorage
   const [signedIn, setSignedIn] = useState(() => {
-    const storedSignedIn = localStorage.getItem("signedIn");
-    return storedSignedIn ? JSON.parse(storedSignedIn) : initialSignedIn;
+    const stored = localStorage.getItem("signedIn");
+    return stored ? JSON.parse(stored) : initialSignedIn;
   });
 
-  // Update localStorage whenever the signedIn state changes
+  // Reflect changes in localStorage when signedIn changes
   useEffect(() => {
     localStorage.setItem("signedIn", JSON.stringify(signedIn));
   }, [signedIn]);
+
+  // Tracks if user has an account or not (for login/signup toggling)
+  const [hasAccount, setHasAccount] = useState(true);
 
   return (
     <div className="App">
       <NavBar />
       <SearchBar />
+
       <Suspense fallback={<h1>Loading...</h1>}>
         <Routes>
           <Route path="/" element={<Home />} />

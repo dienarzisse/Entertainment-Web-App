@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { GetLanguageName, FetchData, RoundStars } from "../HelperFunctions";
 import Stars from "react-stars";
 import IMDbIcon from "../assets/imdb-logo.svg";
@@ -10,11 +10,35 @@ import "./styling/css/ContentDetails.css";
 
 const placeholderImage = "https://via.placeholder.com/300x450?text=Loading...";
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
+interface MediaContentDetails {
+  title?: string;
+  name?: string;
+  tagline?: string;
+  vote_average?: number;
+  homepage?: string;
+  imdb_id?: string;
+  runtime?: number;
+  original_language?: string;
+  release_date?: string;
+  status?: string;
+  genres?: Genre[];
+  overview?: string;
+  poster_path?: string;
+}
+
 function ContentDetails() {
-  const { mediaType, id } = useParams();
-  const [mediaContentDetails, setMediaContentDetails] = useState(null);
+  const { mediaType, id } = useParams<{ mediaType: string; id: string }>();
+  const [mediaContentDetails, setMediaContentDetails] =
+    useState<MediaContentDetails | null>(null);
 
   useEffect(() => {
+    if (!mediaType || !id) return;
+
     const optionsDetails = {
       method: "GET",
       url: `https://api.themoviedb.org/3/${mediaType}/${id}?language=en-US`,
@@ -48,7 +72,7 @@ function ContentDetails() {
     poster_path,
   } = mediaContentDetails;
 
-  const ratingValue = Number((vote_average / 2).toFixed(1));
+  const ratingValue = vote_average ? Number((vote_average / 2).toFixed(1)) : 0;
 
   return (
     <div className="ContentDetails">
@@ -58,10 +82,11 @@ function ContentDetails() {
             ? `https://image.tmdb.org/t/p/w500${poster_path}`
             : placeholderImage
         }
-        alt={title || name}
+        alt={title || name || "Media Poster"}
         className="CoverImage"
         effect="blur"
         placeholderSrc={placeholderImage}
+        draggable={false}
       />
 
       <h1>{title || name}</h1>
@@ -70,8 +95,13 @@ function ContentDetails() {
       <div className="Rating">
         <div className="RatingText">
           {homepage && (
-            <a href={homepage} target="_blank" rel="noreferrer">
-              <img src={HomeIcon} alt="Official Site" />
+            <a
+              href={homepage}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Official Website"
+            >
+              <img src={HomeIcon} alt="Official Site" loading="lazy" />
             </a>
           )}
           {ratingValue}
@@ -79,9 +109,10 @@ function ContentDetails() {
             <a
               href={`https://www.imdb.com/title/${imdb_id}/`}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label="IMDb Page"
             >
-              <img src={IMDbIcon} alt="IMDb" />
+              <img src={IMDbIcon} alt="IMDb" loading="lazy" />
             </a>
           )}
         </div>
@@ -91,13 +122,13 @@ function ContentDetails() {
           size={24}
           color1="#999"
           color2="#ffd700"
-          half
+          half={true}
           edit={false}
         />
       </div>
 
       <div className="BasicInfo">
-        {runtime && (
+        {runtime !== undefined && (
           <div className="Length">
             <h2>Length</h2>
             <span>{runtime} min.</span>
@@ -123,7 +154,7 @@ function ContentDetails() {
         )}
       </div>
 
-      {genres?.length > 0 && (
+      {genres && genres.length > 0 && (
         <div className="Genres">
           <h2>Genres</h2>
           <div className="GenresWrapper">

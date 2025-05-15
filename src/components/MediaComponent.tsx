@@ -6,7 +6,6 @@ import Loading from "./Loading";
 import Content from "./Content";
 import "./styling/css/MediaComponent.css";
 
-// Type for API results (adjust fields as needed)
 interface MediaItem {
   id: number;
   backdrop_path: string | null;
@@ -19,7 +18,6 @@ interface MediaItem {
   vote_average: number;
 }
 
-// Props type
 interface MediaComponentProps {
   mediaType?: string;
   category?: string;
@@ -45,34 +43,45 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
   useEffect(() => {
     const fetchContent = async () => {
       setLoading(true);
-
       try {
-        if (genre_id && page && mediaType) {
+        if (genre_id && mediaType) {
           await APIOPTIONS.fetchData(
             APIOPTIONS.getGenreContentOptions(mediaType, page, genre_id),
             setList
           );
-        } else if (keyword && page) {
+        } else if (keyword) {
           await APIOPTIONS.fetchData(
             APIOPTIONS.getKeywordOptions(keyword, page),
             setList
           );
-        } else if (category && mediaType && page) {
+        } else if (category && mediaType) {
           await APIOPTIONS.fetchData(
             APIOPTIONS.getContentOptions(mediaType, category, page),
             setList
           );
+        } else {
+          setList([]); // Clear list if no valid params
         }
       } catch (err) {
         console.error("Failed to fetch data:", err);
+        setList([]); // Clear list on error
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
     fetchContent();
   }, [category, mediaType, page, genre_id, keyword]);
 
+  if (loading) return <Loading />;
+
+  if (list.length === 0)
+    return (
+      <div className="MediaComponent">
+        <h2>No results found.</h2>
+      </div>
+    );
+  console.log(list)
   const mappedList = list.map((item) => (
     <Content
       key={item.id}
@@ -92,18 +101,19 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
     />
   ));
 
-  if (loading) return <Loading />;
-
   const buildSeeMoreLink = () => {
+    if (!mediaType) return "#";
     if (genre_id) return `/${mediaType}/genre/${genre_id}/details/${page}`;
     if (keyword) return `/${mediaType}/keyword/${keyword}/details/${page}`;
-    return `/${mediaType}/${category}/details/${page}`;
+    if (category) return `/${mediaType}/${category}/details/${page}`;
+    return "#";
   };
 
   const getHeaderTitle = () => {
     if (genre_id) return StringToTitle(genre_name || "Genre");
     if (keyword) return `Results for "${StringToTitle(keyword)}"`;
-    return StringToTitle(category || "Category");
+    if (category) return StringToTitle(category);
+    return "Media";
   };
 
   return (
@@ -111,11 +121,17 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
       <nav>
         <div className="Header-Wrapper">
           <h1>{getHeaderTitle()}</h1>
-          {mediaType && <div className="Media-Type">{mediaType}</div>}
+          {mediaType && (
+            <div className="Media-Type">{mediaType.toUpperCase()}</div>
+          )}
         </div>
 
         {seeMore && (
-          <Link to={buildSeeMoreLink()} className="Link">
+          <Link
+            to={buildSeeMoreLink()}
+            className="Link"
+            aria-label="See more content"
+          >
             See More
           </Link>
         )}

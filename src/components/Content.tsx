@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, KeyboardEvent, MouseEvent } from "react";
 import { useInView } from "react-intersection-observer";
 import { MEDIA_TYPES } from "../Constants";
 import MovieIcon from "../assets/icon-category-movie.svg";
@@ -12,9 +12,10 @@ import "./styling/css/Content.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-const placeholderImage = "https://via.placeholder.com/500x281?text=Loading...";
+// If no image is available
+const placeholderImage =
+  "https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg";
 
-// ✨ Define prop types
 interface ContentProps {
   id: number | string;
   imgSrc: string | null;
@@ -34,7 +35,7 @@ const Content: React.FC<ContentProps> = ({
   adult,
   rating,
 }) => {
-  const [bookmarked, setBookmarked] = useState<boolean>(false);
+  const [bookmarked, setBookmarked] = useState(false);
   const navigate = useNavigate();
   const [ref, inView] = useInView({ triggerOnce: true });
 
@@ -47,11 +48,40 @@ const Content: React.FC<ContentProps> = ({
     window.scrollTo(0, 0);
   };
 
+  const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleClick();
+    }
+  };
+
+  const toggleBookmark = (
+    e: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>
+  ) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setBookmarked((prev) => !prev);
+  };
+
+  const handleBookmarkKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      toggleBookmark(e);
+    }
+  };
+
   return (
-    <div className="Content" ref={ref}>
+    <div
+      className="Content"
+      ref={ref}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={handleKeyPress}
+      aria-label={`View details for ${name}`}
+    >
       {inView && (
         <>
-          <div className="ImageWrapper" onClick={handleClick}>
+          <div className="ImageWrapper">
             <LazyLoadImage
               src={imageUrl}
               alt={name}
@@ -59,6 +89,10 @@ const Content: React.FC<ContentProps> = ({
               placeholderSrc={placeholderImage}
               className="Background"
               draggable={false}
+              loading="lazy"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = placeholderImage;
+              }}
             />
           </div>
 
@@ -69,19 +103,20 @@ const Content: React.FC<ContentProps> = ({
               <div className="Type">
                 <img
                   src={mediaType === MEDIA_TYPES.MOVIE ? MovieIcon : TVIcon}
-                  alt="media type"
+                  alt={mediaType === MEDIA_TYPES.MOVIE ? "Movie" : "TV Series"}
+                  loading="lazy"
+                  draggable={false}
                 />
                 <p>{mediaType}</p>
               </div>
             </div>
+
             <div className="Age">
               <p>{adult ? "18+" : "PG"}</p>
             </div>
           </div>
 
-          <div className="Name" onClick={handleClick}>
-            {name}
-          </div>
+          <div className="Name">{name}</div>
 
           <div className="Rating">
             <Stars
@@ -97,12 +132,18 @@ const Content: React.FC<ContentProps> = ({
 
           <div
             className="BookmarkContainer"
-            onClick={() => setBookmarked(!bookmarked)}
+            onClick={toggleBookmark}
+            role="button"
+            aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
+            tabIndex={0}
+            onKeyDown={handleBookmarkKeyPress}
           >
             <img
               src={bookmarked ? BookmarkFullIcon : BookmarkEmptyIcon}
-              alt="bookmark"
+              alt="bookmark icon"
               className="Bookmark"
+              draggable={false}
+              loading="lazy"
             />
           </div>
         </>

@@ -14,7 +14,8 @@
     "checkJs": false // (optional) don’t report errors in JS files
   },
   "include": [
-    "src" // make sure this matches your folder structure
+    "src", // make sure this matches your folder structure
+    "src/index.tsx"
   ],
   "exclude": ["node_modules"]
 }

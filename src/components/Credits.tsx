@@ -1,43 +1,39 @@
-import { useState, useEffect } from "react";
-import { FetchData } from "../HelperFunctions";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { FetchData } from "../HelperFunctions";
 import UnknownIcon from "../assets/icon-unknown.svg";
 import "./styling/css/Credits.css";
+
+interface CastMember {
+  cast_id: number;
+  id: number;
+  name: string;
+  original_name: string;
+  character: string;
+  profile_path: string | null;
+}
+
+interface CreditsData {
+  cast: CastMember[];
+}
+
 function Credits() {
-  const { mediaType, id } = useParams();
-  const [credits, setCredits] = useState({ cast: [] });
-  const openNewTab = (item) => {
+  const { mediaType, id } = useParams<{ mediaType: string; id: string }>();
+  const [credits, setCredits] = useState<CreditsData>({ cast: [] });
+
+  const openNewTab = (item: CastMember) => {
     const url = `https://www.themoviedb.org/person/${
       item.id
     }-${item.original_name
       .split(" ")
       .map((name) => name.toLowerCase())
       .join("-")}`;
-    window.open(url, "_blank");
+    window.open(url, "_blank", "noopener,noreferrer");
   };
-  const mappedCredits = credits.cast.slice(0, 6).map((item) => {
-    return (
-      <div
-        className="Profile-Card"
-        key={item.cast_id}
-        onClick={() => openNewTab(item)}
-      >
-        {item.profile_path ? (
-          <img
-            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${item.profile_path}`}
-            alt="profile"
-          />
-        ) : (
-          <img src={UnknownIcon} alt="profile" />
-        )}
-        <div className="Actor-Details">
-          <div className="Name">{item.name}</div>
-          <div className="Caracter"><span>Playing: </span>{item.character}</div>
-        </div>
-      </div>
-    );
-  });
+
   useEffect(() => {
+    if (!mediaType || !id) return;
+
     const optionsCredits = {
       method: "GET",
       url: `https://api.themoviedb.org/3/${mediaType}/${id}/credits?language=en-US`,
@@ -50,12 +46,50 @@ function Credits() {
 
     FetchData(optionsCredits, setCredits);
   }, [mediaType, id]);
-  if(credits.cast.length < 1)
-    return null;
+
+  if (!credits.cast.length) return null;
+
   return (
     <div className="Credits">
       <h1>Top Casts</h1>
-      <div className="Casts">{mappedCredits}</div>
+      <div className="Casts">
+        {credits.cast.slice(0, 6).map((item) => (
+          <div
+            className="Profile-Card"
+            key={item.cast_id}
+            onClick={() => openNewTab(item)}
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => {
+              if (e.key === "Enter" || e.key === " ") openNewTab(item);
+            }}
+            aria-label={`View profile of ${item.name}`}
+          >
+            {item.profile_path ? (
+              <img
+                src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${item.profile_path}`}
+                alt={`${item.name} profile`}
+                loading="lazy"
+                draggable={false}
+              />
+            ) : (
+              <img
+                src={UnknownIcon}
+                alt="Unknown profile"
+                loading="lazy"
+                draggable={false}
+              />
+            )}
+            <div className="Actor-Details">
+              <div className="Name">{item.name}</div>
+              <div className="Caracter">
+                <span>Playing: </span>
+                {item.character}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

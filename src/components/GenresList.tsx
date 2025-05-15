@@ -1,17 +1,35 @@
+import React from "react";
 import { useParams } from "react-router-dom";
 import DetailedView from "./DetailedView";
-function GenresList(){
-    const {
-      mediaType,
-      genre_id,
-      category="popular",
-      page,
-    } = useParams();
-    return (
-      <div className="GenresList">
-        <DetailedView mediaType={mediaType} category={category} genre_id={genre_id} page={page} />
-      </div>
-    );
+
+interface GenresListParams {
+  mediaType?: string;
+  genre_id?: string;
+  category?: string;
+  page?: string;
 }
+
+const GenresList: React.FC = () => {
+  const params = useParams();
+
+  // Type assertion or destructure with fallback
+  const {
+    mediaType,
+    genre_id,
+    category = "popular",
+    page,
+  } = params as GenresListParams;
+
+  return (
+    <div className="GenresList">
+      <DetailedView
+        mediaType={mediaType}
+        category={category}
+        genre_id={genre_id}
+        page={page}
+      />
+    </div>
+  );
+};
 
 export default GenresList;

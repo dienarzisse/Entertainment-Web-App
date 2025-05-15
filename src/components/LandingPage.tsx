@@ -1,16 +1,30 @@
+import React from "react";
 import Logo from "../assets/logo.svg";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
-import './styling/css/LandingPage.css';
-function LandingPage({ hasAccount, setHasAccount, setSignedIn }) {
+import "./styling/css/LandingPage.css";
+
+interface LandingPageProps {
+  hasAccount: boolean;
+  setHasAccount: React.Dispatch<React.SetStateAction<boolean>>;
+  setSignedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({
+  hasAccount,
+  setHasAccount,
+  setSignedIn,
+}) => {
   return (
     <div className="LandingPage">
-      <img src={Logo} alt="logo"></img>
-      {hasAccount && (
+      <img src={Logo} alt="logo" className="LandingPage-logo" />
+      {hasAccount ? (
         <LogIn setHasAccount={setHasAccount} setSignedIn={setSignedIn} />
+      ) : (
+        <SignUp setHasAccount={setHasAccount} />
       )}
-      {!hasAccount && <SignUp setHasAccount={setHasAccount} />}
     </div>
   );
-}
+};
+
 export default LandingPage;

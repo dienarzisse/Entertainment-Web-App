@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useMemo, lazy } from "react";
 import { useParams } from "react-router-dom";
 import { FetchData } from "../HelperFunctions";
 import Carousel from "react-multi-carousel";
@@ -39,7 +39,7 @@ function VideoCarousel() {
       items: 1,
     },
   };
-  useEffect(() => {
+  useMemo(() => {
     const optionsVideos = {
       method: "GET",
       url: `https://api.themoviedb.org/3/${mediaType}/${id}/videos?language=en-US`,

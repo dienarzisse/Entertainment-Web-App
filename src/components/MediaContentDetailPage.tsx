@@ -1,3 +1,4 @@
+import React from "react";
 import "./styling/css/MediaContentDetailPage.css";
 import ContentDetails from "./ContentDetails";
 import Credits from "./Credits";
@@ -6,8 +7,9 @@ import SimilarContent from "./SimilarContent";
 import Providers from "./Providers";
 import VideoCarousel from "./VideoCarousel";
 
-const MediaContentDetailPage = () => {
-  // add rating system
+const MediaContentDetailPage: React.FC = () => {
+  // TODO: Implement rating system here
+
   return (
     <div className="MediaContentDetailPage">
       <ContentDetails />

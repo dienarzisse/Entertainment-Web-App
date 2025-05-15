@@ -10,27 +10,32 @@ const AuthDetails: React.FC<AuthDetailsProps> = ({ setSignedIn }) => {
   const [authUser, setAuthUser] = useState<User | null>(null);
 
   useEffect(() => {
+    // Subscribe to auth state changes
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setAuthUser(user);
+      setSignedIn(!!user); // Update signedIn state when auth state changes
     });
 
+    // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, []);
+  }, [setSignedIn]);
 
-  const userSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("Sign out was successful");
-        setSignedIn(false);
-      })
-      .catch((error) => console.log(error));
+  const userSignOut = async () => {
+    try {
+      await signOut(auth);
+      console.log("Sign out was successful");
+      setSignedIn(false);
+      setAuthUser(null);
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   return (
     <div className="AuthDetails">
       {authUser ? (
         <>
-          <p>Signed In</p>
+          <p>Signed In as {authUser.email}</p>
           <button className="SignOut" onClick={userSignOut}>
             Sign Out
           </button>
