@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { FetchData } from "../HelperFunctions";
+import { FetchData } from "../helpers/HelperFunctions";
 import { useParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -89,7 +89,7 @@ const ImageList: React.FC = () => {
               alt="Media Content"
               effect="blur"
               placeholderSrc={placeholderImage}
-              onError={(e) => {
+              onError={(e: ErrorEvent) => {
                 const target = e.target as HTMLImageElement;
                 target.onerror = null;
                 target.src = placeholderImage;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { APIOPTIONS } from "../APIOptions";
-import { StringToTitle } from "../HelperFunctions";
+import { APIOPTIONS } from "../api/APIOptions";
+import { StringToTitle } from "../helpers/HelperFunctions";
 import Loading from "./Loading";
 import Content from "./Content";
 import "./styling/css/MediaComponent.css";
@@ -111,7 +111,11 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
   };
 
   return (
-    <div className={category === "trending" && seeMore ? "Trending" : "MediaComponent"}>
+    <div
+      className={
+        category === "trending" && seeMore ? "Trending" : "MediaComponent"
+      }
+    >
       <nav>
         <div className="Header-Wrapper">
           <h1>{getHeaderTitle()}</h1>

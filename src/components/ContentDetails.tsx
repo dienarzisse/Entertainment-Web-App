@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { GetLanguageName, FetchData, RoundStars } from "../HelperFunctions";
+import {
+  GetLanguageName,
+  FetchData,
+  RoundStars,
+} from "../helpers/HelperFunctions";
 import Stars from "react-stars";
 import IMDbIcon from "../assets/imdb-logo.svg";
 import HomeIcon from "../assets/home-logo.svg";

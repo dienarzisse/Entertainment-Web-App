@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FetchData } from "../HelperFunctions";
-import { APIOPTIONS } from "../APIOptions";
+import { FetchData } from "../helpers/HelperFunctions";
+import { APIOPTIONS } from "../api/APIOptions";
 import GenreButton from "./GenreButton";
-import { PARITY } from "../Constants";
+import { PARITY } from "../helpers/Constants";
 import "./styling/css/Genres.css";
 
 interface Genre {

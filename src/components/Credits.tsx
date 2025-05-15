@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
-import { FetchData } from "../HelperFunctions";
+import { FetchData } from "../helpers/HelperFunctions";
 import UnknownIcon from "../assets/icon-unknown.svg";
 import "./styling/css/Credits.css";
 

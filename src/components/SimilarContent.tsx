@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FetchData } from "../HelperFunctions";
+import { FetchData } from "../helpers/HelperFunctions";
 import Content from "./Content";
 import "./styling/css/SimilarContent.css";
 import Loading from "./Loading";
 
-// Define the type for one content item
 interface SimilarItem {
   id: number;
   backdrop_path: string | null;
@@ -18,7 +17,6 @@ interface SimilarItem {
   vote_average: number;
 }
 
-// Define the state shape expected from API response
 interface SimilarList {
   results: SimilarItem[];
 }
@@ -26,7 +24,7 @@ interface SimilarList {
 function SimilarContent() {
   const { mediaType, id } = useParams<{ mediaType?: string; id?: string }>();
   const [similarList, setSimilarList] = useState<SimilarList>({ results: [] });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!mediaType || !id) return;
@@ -42,19 +40,32 @@ function SimilarContent() {
     };
 
     setLoading(true);
-    FetchData(optionsSimilar, setSimilarList).finally(() => setLoading(false));
+    FetchData(optionsSimilar, setSimilarList)
+      .catch((error) => {
+        console.error("Failed to fetch similar content:", error);
+      })
+      .finally(() => setLoading(false));
   }, [mediaType, id]);
 
-  if (loading) return null //<Loading />;
+  if (loading) return <Loading />;
 
-  // Filter out items without backdrop_path and map to Content components
+  // Defensive check: avoid rendering if no results
+  if (!similarList.results.length) {
+    return (
+      <div className="SimilarContent">
+        <h1>Similar</h1>
+        <p>No similar content found.</p>
+      </div>
+    );
+  }
+
   const mappedSimilarList = similarList.results
     .filter((item) => item.backdrop_path !== null)
     .map((item) => (
       <Content
         key={item.id}
         id={item.id}
-        imgSrc={item.backdrop_path || ""}
+        imgSrc={item.backdrop_path ?? ""}
         year={
           item.release_date
             ? new Date(item.release_date).getFullYear()
@@ -63,7 +74,7 @@ function SimilarContent() {
             : "N/A"
         }
         name={item.title ?? item.name ?? "Unknown"}
-        mediaType={item.media_type ?? mediaType}
+        mediaType={item.media_type ?? mediaType ?? ""}
         adult={item.adult ?? false}
         rating={item.vote_average / 2}
       />

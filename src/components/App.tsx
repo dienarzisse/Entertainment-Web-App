@@ -11,47 +11,61 @@ const SearchView = lazy(() => import("./SearchView"));
 const Genres = lazy(() => import("./Genres"));
 const GenresList = lazy(() => import("./GenresList"));
 const MediaContentDetailPage = lazy(() => import("./MediaContentDetailPage"));
+const SignUp = lazy(() => import("./SignUp"));
+const LogIn = lazy(() => import("./LogIn"));
 
 function App() {
-  const initialSignedIn = false;
-
-  // Persist signedIn state using localStorage
   const [signedIn, setSignedIn] = useState(() => {
-    const stored = localStorage.getItem("signedIn");
-    return stored ? JSON.parse(stored) : initialSignedIn;
+    return true;
+    // const stored = localStorage.getItem("signedIn");
+    // return stored ? JSON.parse(stored) : false;
   });
 
-  // Reflect changes in localStorage when signedIn changes
   useEffect(() => {
     localStorage.setItem("signedIn", JSON.stringify(signedIn));
-    // Scroll to the top on refresh
-    window.history.scrollRestoration = "manual";
   }, [signedIn]);
 
-  // Tracks if user has an account or not (for login/signup toggling)
-  const [hasAccount, setHasAccount] = useState(true);
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
+  const [hasAccount, setHasAccount] = useState(false);
 
   return (
     <div className="App">
-      <NavBar />
-      <SearchBar />
-
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/:mediaType/:category/details/:page"
-            element={<DetailedView />}
-          />
-          <Route path="/search/:keyword/:page" element={<SearchView />} />
-          <Route path="/:mediaType/genres" element={<Genres />} />
-          <Route
-            path="/:mediaType/genre/:genre_id/:genre_name/:page"
-            element={<GenresList />}
-          />
-          <Route path="/:mediaType/:id" element={<MediaContentDetailPage />} />
-        </Routes>
-      </Suspense>
+      {!signedIn ? (
+        <Suspense fallback={<div className="LoadingScreen">Loading...</div>}>
+          {hasAccount ? (
+            <LogIn setSignedIn={setSignedIn} setHasAccount={setHasAccount} />
+          ) : (
+            <SignUp setHasAccount={setHasAccount} />
+          )}
+        </Suspense>
+      ) : (
+        <>
+          <NavBar />
+          <SearchBar />
+          <Suspense fallback={<div className="LoadingScreen">Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/:mediaType/:category/details/:page"
+                element={<DetailedView />}
+              />
+              <Route path="/search/:keyword/:page" element={<SearchView />} />
+              <Route path="/:mediaType/genres" element={<Genres />} />
+              <Route
+                path="/:mediaType/genre/:genre_id/:genre_name/:page"
+                element={<GenresList />}
+              />
+              <Route
+                path="/:mediaType/:id"
+                element={<MediaContentDetailPage />}
+              />
+            </Routes>
+          </Suspense>
+        </>
+      )}
     </div>
   );
 }

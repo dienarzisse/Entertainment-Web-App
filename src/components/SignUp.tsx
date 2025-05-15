@@ -1,7 +1,7 @@
 import { useState, FormEvent } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-
+import { auth } from "../api/firebase";
+import "./styling/css/SignUp.css";
 interface SignUpProps {
   setHasAccount: (value: boolean) => void;
 }
