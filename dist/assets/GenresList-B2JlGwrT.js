@@ -1,1 +1,0 @@
-import{u as o,j as e}from"./index-rImokVMp.js";import m from"./DetailedView-CQDpbLE8.js";const c=()=>{const s=o(),{mediaType:r,genre_id:a,category:t="popular",page:i}=s;return e.jsx("div",{className:"GenresList",children:e.jsx(m,{mediaType:r,category:t,genre_id:a,page:i})})};export{c as default};
