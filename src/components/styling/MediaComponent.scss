@@ -41,18 +41,14 @@
 
   .Container {
     width: 100%;
-
     .ContentContainer {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
       box-sizing: border-box;
-
       .Content {
-        width: 100%;
-        min-height: 25vh;
+        min-width: 100%;
         box-sizing: border-box;
-
         .Background {
           width: 100%;
           box-sizing: border-box;

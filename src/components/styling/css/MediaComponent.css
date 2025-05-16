@@ -47,8 +47,7 @@
   box-sizing: border-box;
 }
 .MediaComponent .Container .ContentContainer .Content {
-  width: 100%;
-  min-height: 25vh;
+  min-width: 100%;
   box-sizing: border-box;
 }
 .MediaComponent .Container .ContentContainer .Content .Background {
