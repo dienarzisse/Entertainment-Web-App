@@ -1,0 +1,1 @@
+import{u as s,j as e}from"./index-rImokVMp.js";import i from"./DetailedView-CQDpbLE8.js";function m(){const{keyword:r,page:a}=s();return e.jsx("div",{className:"SearchView",children:e.jsx(i,{page:a,keyword:r??""})})}export{m as default};
