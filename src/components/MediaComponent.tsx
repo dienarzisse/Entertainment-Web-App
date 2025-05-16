@@ -119,7 +119,7 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
     return "Media";
   };
 
-  if(loading) return null;
+  if (loading) return null;
 
   return (
     <div

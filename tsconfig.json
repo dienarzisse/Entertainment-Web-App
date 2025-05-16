@@ -8,14 +8,14 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": false,
-
-    // ADDED for gradual JS → TS migration:
-    "allowJs": true, // let TS compile .js/.jsx files
-    "checkJs": false // (optional) don’t report errors in JS files
+    "baseUrl": "src",
+    "paths": {
+      "assets/*": ["assets/*"],
+      "helpers/*": ["helpers/*"],
+      "components/*": ["components/*"],
+      
+    }
   },
-  "include": [
-    "src", // make sure this matches your folder structure
-    "src/index.tsx"
-  ],
+  "include": ["src", "src/index.tsx"],
   "exclude": ["node_modules"]
 }

@@ -14,16 +14,10 @@ interface DetailedViewProps {
 
 const DetailedView: React.FC<DetailedViewProps> = () => {
   const params = useParams();
-  
-    // Type assertion or destructure with fallback
-    const {
-      mediaType,
-      genre_id,
-      genre_name,
-      category,
-      page,
-      keyword
-    } = params as DetailedViewProps;
+
+  // Type assertion or destructure with fallback
+  const { mediaType, genre_id, genre_name, category, page, keyword } =
+    params as DetailedViewProps;
   const navigate = useNavigate();
   const initialPage = Number(page) > 0 ? Number(page) : 1;
   const [currentPage, setCurrentPage] = useState(initialPage);
@@ -75,7 +69,10 @@ const DetailedView: React.FC<DetailedViewProps> = () => {
           </button>
         )}
         <span>Page {currentPage}</span>
-        <button onClick={() => goToPage(Number(currentPage) + 1)} className="Next">
+        <button
+          onClick={() => goToPage(Number(currentPage) + 1)}
+          className="Next"
+        >
           Next
         </button>
       </div>
