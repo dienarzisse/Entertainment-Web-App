@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .Content {
   width: 100%;
   min-height: 10rem;
@@ -94,11 +95,13 @@
 }
 .Content .Name {
   display: block;
-  max-width: calc(100% - 5rem);
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  max-width: calc(100% - 4rem);
+  white-space: normal;
+  overflow: visible;
   font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1.4; /* ⬅️ Adjust line height to give enough space */
+  padding-bottom: 2px; /* ⬅️ Helps avoid clipping descenders like 'g', 'y', etc. */
 }
 .Content .BookmarkContainer {
   position: absolute;
