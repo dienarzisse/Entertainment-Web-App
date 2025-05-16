@@ -12,10 +12,7 @@ const defaultHeaders = {
 
 type Setter<T> = (value: T) => void;
 
-export const APIOPTIONS = {
-  /**
-   * Returns axios options to get content by media type and category.
-   */
+export const ApiClient = {
   getContentOptions: (
     mediaType: string,
     category: string,
@@ -29,12 +26,6 @@ export const APIOPTIONS = {
     }?language=en-US&page=${page}`,
     headers: defaultHeaders,
   }),
-
-  /**
-   * Fetches data using axios and sets the results via setter.
-   * @param options Axios request options
-   * @param setter React state setter to update with results array
-   */
   fetchData: async <T,>(
     options: AxiosRequestConfig,
     setter: Setter<T[]>
@@ -48,19 +39,11 @@ export const APIOPTIONS = {
       console.error("API fetch error:", error);
     }
   },
-
-  /**
-   * Returns axios options to get genre list for a given media type.
-   */
   getGenreList: (mediaType: string): AxiosRequestConfig => ({
     method: "GET",
     url: `${API_BASE_URL}/genre/${mediaType}/list?language=en`,
     headers: defaultHeaders,
   }),
-
-  /**
-   * Returns axios options to get content filtered by genre.
-   */
   getGenreContentOptions: (
     mediaType: string,
     page: number,
@@ -70,10 +53,6 @@ export const APIOPTIONS = {
     url: `${API_BASE_URL}/discover/${mediaType}?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre_id}`,
     headers: defaultHeaders,
   }),
-
-  /**
-   * Returns axios options to search content by keyword.
-   */
   getKeywordOptions: (keyword: string, page: number): AxiosRequestConfig => ({
     method: "GET",
     url: `${API_BASE_URL}/search/multi?query=${encodeURIComponent(

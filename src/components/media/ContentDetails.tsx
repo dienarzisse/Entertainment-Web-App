@@ -14,6 +14,9 @@ import {
   RoundStars,
 } from "@helpers/HelperFunctions";
 
+// API
+import { ApiClient } from "@api/ApiClient";
+
 // Components
 import Loading from "@components/misc/Loading";
 import ImageList from "@components/media/ImageList";

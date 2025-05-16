@@ -10,7 +10,7 @@ import { FetchData } from "@helpers/HelperFunctions";
 import { PARITY } from "@helpers/Constants";
 
 // API Config
-import { APIOPTIONS } from "@api/APIOptions";
+import { ApiClient } from "@api/ApiClient";
 
 // Components
 import GenreButton from "@components/genre/GenreButton";
@@ -31,7 +31,7 @@ const Genres: React.FC = () => {
   // Fetch genre list when mediaType changes
   useEffect(() => {
     if (!mediaType) return;
-    FetchData(APIOPTIONS.getGenreList(mediaType), setList);
+    FetchData(ApiClient.getGenreList(mediaType), setList);
   }, [mediaType]);
 
   return (

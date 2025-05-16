@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // API & Helpers
-import { APIOPTIONS } from "@api/APIOptions";
+import { ApiClient } from "@api/ApiClient";
 import { StringToTitle } from "@helpers/HelperFunctions";
 
 // Components
@@ -66,18 +66,18 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
       setLoading(true);
       try {
         if (genre_id && mediaType) {
-          await APIOPTIONS.fetchData(
-            APIOPTIONS.getGenreContentOptions(mediaType, page, genre_id),
+          await ApiClient.fetchData(
+            ApiClient.getGenreContentOptions(mediaType, page, genre_id),
             setList
           );
         } else if (keyword) {
-          await APIOPTIONS.fetchData(
-            APIOPTIONS.getKeywordOptions(keyword, page),
+          await ApiClient.fetchData(
+            ApiClient.getKeywordOptions(keyword, page),
             setList
           );
         } else if (category && mediaType) {
-          await APIOPTIONS.fetchData(
-            APIOPTIONS.getContentOptions(mediaType, category, page),
+          await ApiClient.fetchData(
+            ApiClient.getContentOptions(mediaType, category, page),
             setList
           );
         } else {
