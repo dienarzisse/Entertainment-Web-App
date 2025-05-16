@@ -15,8 +15,8 @@ import {
 } from "@helpers/HelperFunctions";
 
 // Components
-import Loading from "@components/Loading";
-import ImageList from "@components/ImageList";
+import Loading from "@components/misc/Loading";
+import ImageList from "@components/media/ImageList";
 import Stars from "react-stars";
 
 // Assets

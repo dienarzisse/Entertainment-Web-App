@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 // Components
-import MediaComponent from "@components/MediaComponent";
+import MediaComponent from "@components/media/MediaComponent";
 
 interface DetailedViewProps {
   mediaType?: string;

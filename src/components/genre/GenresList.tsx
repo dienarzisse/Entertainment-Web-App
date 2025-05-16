@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 // Components
-import DetailedView from "@components/DetailedView";
+import DetailedView from "@components/views/DetailedView";
 
 interface GenresListParams {
   mediaType?: string;

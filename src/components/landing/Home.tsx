@@ -5,7 +5,7 @@ import "@styling/Home.css";
 import React from "react";
 
 // Components
-import MediaComponent from "@components/MediaComponent";
+import MediaComponent from "@components/media/MediaComponent";
 
 // Helpers & Constants
 import { MOVIECATEGORIES, TVCATEGORIES, MEDIA_TYPES } from "@helpers/Constants";

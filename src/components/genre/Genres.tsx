@@ -13,7 +13,7 @@ import { PARITY } from "@helpers/Constants";
 import { APIOPTIONS } from "@api/APIOptions";
 
 // Components
-import GenreButton from "@components/GenreButton";
+import GenreButton from "@components/genre/GenreButton";
 
 interface Genre {
   id: string | number;

@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 
 // Components
-import DetailedView from "@components/DetailedView";
+import DetailedView from "@components/views/DetailedView";
 
 function SearchView() {
   const { keyword, page } = useParams<{ keyword?: string; page?: string }>();

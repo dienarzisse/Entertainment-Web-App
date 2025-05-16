@@ -5,8 +5,8 @@ import "@styling/LandingPage.css";
 import React from "react";
 
 // Components
-import LogIn from "@components/LogIn";
-import SignUp from "@components/SignUp";
+import LogIn from "@components/auth/LogIn";
+import SignUp from "@components/auth/SignUp";
 
 // Assets
 import Logo from "@assets/logo.svg";

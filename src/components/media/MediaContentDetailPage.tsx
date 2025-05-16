@@ -5,9 +5,9 @@ import "@styling/MediaContentDetailPage.css";
 import React from "react";
 
 // Components
-import ContentDetails from "@components/ContentDetails";
-import Credits from "@components/Credits";
-import SimilarContent from "@components/SimilarContent";
+import ContentDetails from "@components/media/ContentDetails";
+import Credits from "@components/media/Credits";
+import SimilarContent from "@components/media/SimilarContent";
 
 const MediaContentDetailPage: React.FC = () => {
   // TODO: Implement rating system here

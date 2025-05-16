@@ -11,8 +11,8 @@ import { useParams } from "react-router-dom";
 import { FetchData } from "@helpers/HelperFunctions";
 
 // Components
-import Content from "@components/Content";
-import Loading from "@components/Loading";
+import Content from "@components/media/Content";
+import Loading from "@components/misc/Loading";
 
 interface SimilarItem {
   id: number;

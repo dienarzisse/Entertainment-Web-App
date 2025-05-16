@@ -8,20 +8,20 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 // Core Components
-import Home from "@components/Home";
-import NavBar from "@components/NavBar";
-import SearchBar from "@components/SearchBar";
-import Loading from "@components/Loading";
-import SignUp from "@components/SignUp";
-import LogIn from "@components/LogIn";
+import Home from "@components/landing/Home";
+import NavBar from "@components/misc/NavBar";
+import SearchBar from "@components/misc/SearchBar";
+import Loading from "@components/misc/Loading";
+import SignUp from "@components/auth/SignUp";
+import LogIn from "@components/auth/LogIn";
 
 // Lazy-loaded Pages
-const DetailedView = lazy(() => import("@components/DetailedView"));
-const SearchView = lazy(() => import("@components/SearchView"));
-const Genres = lazy(() => import("@components/Genres"));
-const GenresList = lazy(() => import("@components/GenresList"));
+const DetailedView = lazy(() => import("@components/views/DetailedView"));
+const SearchView = lazy(() => import("@components/views/SearchView"));
+const Genres = lazy(() => import("@components/genre/Genres"));
+const GenresList = lazy(() => import("@components/genre/GenresList"));
 const MediaContentDetailPage = lazy(
-  () => import("@components/MediaContentDetailPage")
+  () => import("@components/media/MediaContentDetailPage")
 );
 
 function App() {

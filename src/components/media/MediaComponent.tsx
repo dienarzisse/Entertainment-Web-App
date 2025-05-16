@@ -12,7 +12,7 @@ import { APIOPTIONS } from "@api/APIOptions";
 import { StringToTitle } from "@helpers/HelperFunctions";
 
 // Components
-import Content from "@components/Content";
+import Content from "@components/media/Content";
 
 interface MediaItem {
   id: number;
