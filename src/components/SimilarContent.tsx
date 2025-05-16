@@ -25,6 +25,7 @@ function SimilarContent() {
   const { mediaType, id } = useParams<{ mediaType?: string; id?: string }>();
   const [similarList, setSimilarList] = useState<SimilarList>({ results: [] });
   const [loading, setLoading] = useState<boolean>(true);
+  const [imagesLoaded, setImagesLoaded] = useState<number>(0);
 
   useEffect(() => {
     if (!mediaType || !id) return;

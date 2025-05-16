@@ -3,7 +3,6 @@
   width: 100%;
   padding: 1rem;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
@@ -15,7 +14,6 @@
 .MediaComponent .Header-Wrapper,
 .Trending .Header-Wrapper {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -35,49 +33,47 @@
 }
 
 .MediaComponent {
-  max-width: 100%;
-  padding: 1rem;
-  padding-top: 0;
+  width: 100%;
+  padding: 1rem 1rem 0;
   box-sizing: border-box;
 }
 .MediaComponent .Container {
-  max-width: 100%;
+  width: 100%;
 }
 .MediaComponent .Container .ContentContainer {
-  max-width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   box-sizing: border-box;
 }
 .MediaComponent .Container .ContentContainer .Content {
-  max-width: 100%;
+  width: 100%;
+  min-height: 25vh;
   box-sizing: border-box;
 }
 .MediaComponent .Container .ContentContainer .Content .Background {
-  max-width: 100%;
   width: 100%;
   box-sizing: border-box;
 }
 
 .Trending {
   width: 100%;
-  padding: 1rem;
-  padding-top: 0;
+  padding: 1rem 1rem 0;
   overflow: hidden;
 }
 .Trending .Container {
   width: 100%;
+  overflow-x: auto;
   overflow-y: hidden;
-  overflow-x: scroll;
   white-space: nowrap;
   /* Scrollbar Styles */
 }
 .Trending .Container::-webkit-scrollbar {
-  width: 20px;
+  height: 12px;
 }
 .Trending .Container::-webkit-scrollbar-track {
   border-radius: 10px;
+  background: transparent;
 }
 .Trending .Container::-webkit-scrollbar-thumb {
   border-radius: 8px;
@@ -87,16 +83,21 @@
   background: hsl(223, 25%, 55%);
 }
 .Trending .ContentContainer {
+  display: flex;
+  gap: 1rem;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
+  margin-bottom: 1rem;
   align-items: center;
-  gap: 1rem;
 }
-.Trending .ContentContainer .Content .Background {
-  max-width: 75vw;
+.Trending .ContentContainer .Content {
+  flex-shrink: 0;
+  width: 75vw;
+  aspect-ratio: 16/9;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Trending .ContentContainer .Content .Year-Type-Wrapper {
   position: absolute;
@@ -105,16 +106,33 @@
 }
 .Trending .ContentContainer .Content .Age {
   position: absolute;
-  bottom: 3.5375rem;
+  bottom: 3.5rem;
   right: 1rem;
 }
 .Trending .ContentContainer .Content .Name {
   position: absolute;
-  bottom: 3.5625rem;
+  bottom: 3.5rem;
   left: 1rem;
 }
 .Trending .ContentContainer .Content .Rating {
   position: absolute;
-  bottom: 4.5625rem;
+  bottom: 4.5rem;
   left: 1rem;
+}
+
+@media (min-width: 720px) {
+  .MediaComponent .Container .ContentContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .Trending .ContentContainer .Content {
+    width: 45vw;
+  }
+}
+@media (min-width: 1024px) {
+  .MediaComponent .Container .ContentContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .Trending .ContentContainer .Content {
+    width: 35vw;
+  }
 }/*# sourceMappingURL=MediaComponent.css.map */

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { APIOPTIONS } from "../api/APIOptions";
 import { StringToTitle } from "../helpers/HelperFunctions";
-import Loading from "./Loading";
 import Content from "./Content";
 import "./styling/css/MediaComponent.css";
 
@@ -27,6 +26,18 @@ interface MediaComponentProps {
   genre_name?: string;
   keyword?: string;
 }
+// Placeholder item for pre-rendering
+const emptyPlaceholder: MediaItem = {
+  id: -1,
+  backdrop_path: null,
+  release_date: "",
+  first_air_date: "",
+  title: "",
+  name: "",
+  media_type: "",
+  adult: false,
+  vote_average: 0,
+};
 
 const MediaComponent: React.FC<MediaComponentProps> = ({
   mediaType,
@@ -37,9 +48,10 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
   genre_name,
   keyword,
 }) => {
-  const [list, setList] = useState<MediaItem[]>([]);
+  const [list, setList] = useState<MediaItem[]>(
+    Array(20).fill(emptyPlaceholder)
+  );
   const [loading, setLoading] = useState<boolean>(false);
-
   useEffect(() => {
     const fetchContent = async () => {
       setLoading(true);
@@ -60,11 +72,11 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
             setList
           );
         } else {
-          setList([]); // Clear list if no valid params
+          setList(Array(20).fill(emptyPlaceholder));
         }
       } catch (err) {
         console.error("Failed to fetch data:", err);
-        setList([]); // Clear list on error
+        setList(Array(20).fill(emptyPlaceholder));
       } finally {
         setLoading(false);
       }
@@ -73,12 +85,9 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
     fetchContent();
   }, [category, mediaType, page, genre_id, keyword]);
 
-  //TODO
-  if (loading) return null; //<Loading />;
-
-  const mappedList = list.map((item) => (
+  const mappedList = list.map((item, index) => (
     <Content
-      key={item.id}
+      key={item.id !== -1 ? item.id : `placeholder-${index}`}
       id={item.id}
       imgSrc={item.backdrop_path}
       year={
@@ -109,6 +118,8 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
     if (category) return StringToTitle(category);
     return "Media";
   };
+
+  if(loading) return null;
 
   return (
     <div

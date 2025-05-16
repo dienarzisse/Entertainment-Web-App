@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 0.25rem;
   position: relative;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -13,8 +12,11 @@
      -moz-user-select: none;
           user-select: none;
 }
-.Content .Background {
-  max-width: 100%;
+.Content .ImageWrapper {
+  opacity: 0.75;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 0.5rem;
@@ -22,10 +24,13 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  opacity: 0.5; /* Added opacity */
 }
-.Content .Background:hover {
-  opacity: 0.75;
+.Content .ImageWrapper img {
+  width: 100%;
+  height: 100%;
+}
+.Content .ImageWrapper:hover {
+  opacity: 0.25;
 }
 .Content .Details {
   display: flex;

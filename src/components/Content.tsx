@@ -12,7 +12,7 @@ import { RoundStars } from "../helpers/HelperFunctions";
 import "./styling/css/Content.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
+import Loading from "./Loading";
 
 interface ContentProps {
   id: number | string;
@@ -22,6 +22,7 @@ interface ContentProps {
   mediaType: string;
   adult: boolean;
   rating: number;
+  onImageLoad?: () => void; // callback when image loads
 }
 
 const Content: React.FC<ContentProps> = ({
@@ -35,6 +36,7 @@ const Content: React.FC<ContentProps> = ({
 }) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const navigate = useNavigate();
   const [ref, inView] = useInView({ triggerOnce: true });
 
@@ -86,19 +88,23 @@ const Content: React.FC<ContentProps> = ({
               alt={name}
               effect="blur"
               wrapperProps={{
-                style: { transitionDelay: "0.25s" },
+                style: { transitionDelay: "0.5s" },
               }}
+              placeholder={<div className="ImagePlaceholder"></div>}
               className="Background"
               draggable={false}
               loading="lazy"
               onLoad={() => {
                 setImageLoaded(true);
               }}
+              onError={() => {
+                setImageError(true);
+              }}
             />
           </div>
 
           {/* Only render additional images after main image loaded */}
-          {imageLoaded && (
+          {imageLoaded && !imageError && (
             <>
               <div className="Details">
                 <div className="Year-Type-Wrapper">
