@@ -12,7 +12,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 // Helpers
-import { FetchData } from "@helpers/HelperFunctions";
+import { ApiClient } from "@api/ApiClient";
 
 const placeholderImage =
   "https://i.pinimg.com/736x/64/eb/ef/64ebefbbd558d77f1a1e0d01a4e050c1.jpg";
@@ -44,20 +44,9 @@ const ImageList: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useMemo(() => {
-    if (!mediaType || !id) return;
-
-    const optionsImages = {
-      method: "GET",
-      url: `https://api.themoviedb.org/3/${mediaType}/${id}/images`,
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzYwYzMxZTEzYjI5MTQ5YzQ1MWY5N2I2ZTU5YTY4MCIsInN1YiI6IjY0ZDM5ODE2ZDEwMGI2MDBlMjY3OGQ4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pPFH4HfP8rNHFUWKvoFXRLlK6ifiRdGT3AAPgzX_Ht4",
-      },
-    };
-
+    if (!mediaType || !id) return
     setLoading(true);
-    FetchData(optionsImages, (data: ImagesResponse) => {
+    ApiClient.fetchAndSet(ApiClient.getImagesOptions(mediaType, id), (data: ImagesResponse) => {
       setImagesList(data);
       setLoading(false);
     });

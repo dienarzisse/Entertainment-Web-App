@@ -9,8 +9,8 @@ import { useParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-// Helpers
-import { FetchData } from "@helpers/HelperFunctions";
+// Api
+import { ApiClient } from "@api/ApiClient";
 
 // Assets
 import UnknownIcon from "@assets/icon-unknown.svg";
@@ -44,18 +44,7 @@ function Credits() {
 
   useEffect(() => {
     if (!mediaType || !id) return;
-
-    const optionsCredits = {
-      method: "GET",
-      url: `https://api.themoviedb.org/3/${mediaType}/${id}/credits?language=en-US`,
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzYwYzMxZTEzYjI5MTQ5YzQ1MWY5N2I2ZTU5YTY4MCIsInN1YiI6IjY0ZDM5ODE2ZDEwMGI2MDBlMjY3OGQ4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pPFH4HfP8rNHFUWKvoFXRLlK6ifiRdGT3AAPgzX_Ht4",
-      },
-    };
-
-    FetchData(optionsCredits, setCredits);
+    ApiClient.fetchAndSet(ApiClient.getCreditsOptions(mediaType, id), setCredits);
   }, [mediaType, id]);
 
   if (!credits.cast.length) return null;

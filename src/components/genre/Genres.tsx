@@ -1,18 +1,10 @@
-// Styles
 import "@styling/Genres.css";
 
-// React & Hooks
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-// Helpers
-import { FetchData } from "@helpers/HelperFunctions";
 import { PARITY } from "@helpers/Constants";
-
-// API Config
 import { ApiClient } from "@api/ApiClient";
-
-// Components
 import GenreButton from "@components/genre/GenreButton";
 
 interface Genre {
@@ -28,10 +20,9 @@ const Genres: React.FC = () => {
   const [list, setList] = useState<GenreList>({ genres: [] });
   const { mediaType } = useParams<{ mediaType: string }>();
 
-  // Fetch genre list when mediaType changes
   useEffect(() => {
     if (!mediaType) return;
-    FetchData(ApiClient.getGenreList(mediaType), setList);
+    ApiClient.fetchAndSet(ApiClient.getGenreList(mediaType), setList);
   }, [mediaType]);
 
   return (

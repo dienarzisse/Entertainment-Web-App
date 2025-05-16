@@ -26,19 +26,6 @@ export const ApiClient = {
     }?language=en-US&page=${page}`,
     headers: defaultHeaders,
   }),
-  fetchData: async <T,>(
-    options: AxiosRequestConfig,
-    setter: Setter<T[]>
-  ): Promise<void> => {
-    try {
-      const response = await axios(options);
-      const resultList: T[] = response.data.results;
-      setter(resultList);
-    } catch (error) {
-      // You might want to improve error handling here
-      console.error("API fetch error:", error);
-    }
-  },
   getGenreList: (mediaType: string): AxiosRequestConfig => ({
     method: "GET",
     url: `${API_BASE_URL}/genre/${mediaType}/list?language=en`,
@@ -60,4 +47,32 @@ export const ApiClient = {
     )}&include_adult=false&language=en-US&page=${page}`,
     headers: defaultHeaders,
   }),
+  getCreditsOptions: (mediaType: string, id: string): AxiosRequestConfig => ({
+    method: "GET",
+    url: `https://api.themoviedb.org/3/${mediaType}/${id}/credits?language=en-US`,
+    headers: defaultHeaders,
+  }),
+  getImagesOptions: (mediaType: string, id: string): AxiosRequestConfig => ({
+    method: "GET",
+    url: `https://api.themoviedb.org/3/${mediaType}/${id}/images`,
+    headers: defaultHeaders,
+  }),
+  getSimilarOptions: (mediaType: string, id: string): AxiosRequestConfig => ({
+    method: "GET",
+    url: `https://api.themoviedb.org/3/${mediaType}/${id}/similar?language=en-US&page=1`,
+    headers: defaultHeaders,
+  }),
+  fetchAndSet: async <T,>(
+    options: AxiosRequestConfig,
+    setter: Setter<T>
+  ): Promise<void> => {
+    try {
+      const response = await axios(options);
+      const resultList: T = response.data;
+      setter(resultList);
+    } catch (error) {
+      // You might want to improve error handling here
+      console.error("API fetch error:", error);
+    }
+  },
 };

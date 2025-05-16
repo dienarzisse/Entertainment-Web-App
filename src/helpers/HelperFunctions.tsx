@@ -15,19 +15,6 @@ export const StringToTitle = (category: string): string => {
     .join(" ");
 };
 
-// Fetch data via axios and update state via setter function
-export const FetchData = async <T,>(
-  options: AxiosRequestConfig,
-  setter: (data: T) => void
-): Promise<void> => {
-  try {
-    const response = await axios<T>(options);
-    setter(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 // Round star ratings to nearest 0.5, keeping integers unchanged
 export const RoundStars = (value: number): number => {
   if (Math.floor(value) === value) return value;

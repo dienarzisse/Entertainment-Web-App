@@ -1,17 +1,10 @@
-// Styles
 import "@styling/MediaComponent.css";
 
-// React
 import React, { useState, useEffect } from "react";
-
-// Routing
 import { Link } from "react-router-dom";
 
-// API & Helpers
 import { ApiClient } from "@api/ApiClient";
 import { StringToTitle } from "@helpers/HelperFunctions";
-
-// Components
 import Content from "@components/media/Content";
 
 interface MediaItem {
@@ -26,6 +19,10 @@ interface MediaItem {
   vote_average: number;
 }
 
+interface MediaItemList {
+  results: MediaItem[];
+}
+
 interface MediaComponentProps {
   mediaType?: string;
   category?: string;
@@ -35,7 +32,7 @@ interface MediaComponentProps {
   genre_name?: string;
   keyword?: string;
 }
-// Placeholder item for pre-rendering
+
 const emptyPlaceholder: MediaItem = {
   id: -1,
   backdrop_path: null,
@@ -61,24 +58,29 @@ const MediaComponent: React.FC<MediaComponentProps> = ({
     Array(20).fill(emptyPlaceholder)
   );
   const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchContent = async () => {
       setLoading(true);
       try {
+        const handleResponse = (data: MediaItemList) => {
+          setList(data.results);
+        };
+
         if (genre_id && mediaType) {
-          await ApiClient.fetchData(
+          await ApiClient.fetchAndSet<MediaItemList>(
             ApiClient.getGenreContentOptions(mediaType, page, genre_id),
-            setList
+            handleResponse
           );
         } else if (keyword) {
-          await ApiClient.fetchData(
+          await ApiClient.fetchAndSet<MediaItemList>(
             ApiClient.getKeywordOptions(keyword, page),
-            setList
+            handleResponse
           );
         } else if (category && mediaType) {
-          await ApiClient.fetchData(
+          await ApiClient.fetchAndSet<MediaItemList>(
             ApiClient.getContentOptions(mediaType, category, page),
-            setList
+            handleResponse
           );
         } else {
           setList(Array(20).fill(emptyPlaceholder));

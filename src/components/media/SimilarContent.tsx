@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
 // Routing
 import { useParams } from "react-router-dom";
 
-// Helpers
-import { FetchData } from "@helpers/HelperFunctions";
+// Api
+import { ApiClient } from "@api/ApiClient";
 
 // Components
 import Content from "@components/media/Content";
@@ -39,18 +39,11 @@ function SimilarContent() {
   useEffect(() => {
     if (!mediaType || !id) return;
 
-    const optionsSimilar = {
-      method: "GET",
-      url: `https://api.themoviedb.org/3/${mediaType}/${id}/similar?language=en-US&page=1`,
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNzYwYzMxZTEzYjI5MTQ5YzQ1MWY5N2I2ZTU5YTY4MCIsInN1YiI6IjY0ZDM5ODE2ZDEwMGI2MDBlMjY3OGQ4OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pPFH4HfP8rNHFUWKvoFXRLlK6ifiRdGT3AAPgzX_Ht4",
-      },
-    };
-
     setLoading(true);
-    FetchData(optionsSimilar, setSimilarList)
+    ApiClient.fetchAndSet(
+      ApiClient.getSimilarOptions(mediaType, id),
+      setSimilarList
+    )
       .catch((error) => {
         console.error("Failed to fetch similar content:", error);
       })

@@ -10,7 +10,6 @@ import { useParams } from "react-router-dom";
 // Helpers
 import {
   GetLanguageName,
-  FetchData,
   RoundStars,
 } from "@helpers/HelperFunctions";
 
@@ -68,7 +67,7 @@ function ContentDetails() {
       },
     };
 
-    FetchData(optionsDetails, setMediaContentDetails);
+    ApiClient.fetchAndSet(optionsDetails, setMediaContentDetails);
   }, [mediaType, id]);
 
   if (!mediaContentDetails) {
