@@ -4,24 +4,26 @@
     width: 100%;
     padding: 1rem;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
+
   .Link {
     text-decoration: none;
     color: #5a698f;
   }
+
   .Header-Wrapper {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+
     h1 {
       font-size: 1.75rem;
       letter-spacing: -0.0195rem;
     }
+
     .Media-Type {
       text-transform: uppercase;
       font-size: 0.5rem;
@@ -33,27 +35,21 @@
 }
 
 .MediaComponent {
-  max-width: 100%;
-  padding: 1rem;
-  padding-top: 0;
+  width: 100%;
+  padding: 1rem 1rem 0;
   box-sizing: border-box;
 
   .Container {
-    max-width: 100%;
-
+    width: 100%;
     .ContentContainer {
-      max-width: 100%;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
       box-sizing: border-box;
-
       .Content {
-        max-width: 100%;
+        min-width: 100%;
         box-sizing: border-box;
-
         .Background {
-          max-width: 100%;
           width: 100%;
           box-sizing: border-box;
         }
@@ -62,71 +58,109 @@
   }
 }
 
-// Trending own styling
 .Trending {
   width: 100%;
-  padding: 1rem;
-  padding-top: 0;
+  padding: 1rem 1rem 0;
   overflow: hidden;
+
   .Container {
     width: 100%;
+    overflow-x: auto;
     overflow-y: hidden;
-    overflow-x: scroll;
     white-space: nowrap;
 
     /* Scrollbar Styles */
     &::-webkit-scrollbar {
-      width: 20px;
+      height: 12px;
     }
-
     &::-webkit-scrollbar-track {
       border-radius: 10px;
+      background: transparent;
     }
-
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
       background: hsl(223, 25%, 35%);
     }
-
     &::-webkit-scrollbar-thumb:hover {
       background: hsl(223, 25%, 55%);
     }
   }
 
   .ContentContainer {
+    display: flex;
+    gap: 1rem;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
+    margin-bottom: 1rem;
     align-items: center;
-    gap: 1rem;
 
     .Content {
-      .Background {
-        max-width: 75vw;
-      }
+      flex-shrink: 0;
+      width: 75vw;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       .Year-Type-Wrapper {
         position: absolute;
         bottom: 2.5rem;
         left: 1rem;
       }
-
       .Age {
         position: absolute;
-        bottom: 3.5375rem;
+        bottom: 3.5rem;
         right: 1rem;
       }
-
       .Name {
         position: absolute;
-        bottom: 3.5625rem;
+        bottom: 3.5rem;
         left: 1rem;
       }
       .Rating {
         position: absolute;
-        bottom: 4.5625rem;
+        bottom: 4.5rem;
         left: 1rem;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (min-width: 720px) {
+  .MediaComponent {
+    .Container {
+      .ContentContainer {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+
+  .Trending {
+    .ContentContainer {
+      .Content {
+        width: 45vw;
+      }
+    }
+  }
+}
+
+
+// Responsive adjustments
+@media (min-width: 1024px) {
+  .MediaComponent {
+    .Container {
+      .ContentContainer {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+
+  .Trending {
+    .ContentContainer {
+      .Content {
+        width: 35vw;
       }
     }
   }
