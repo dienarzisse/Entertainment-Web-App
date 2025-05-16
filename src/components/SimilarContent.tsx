@@ -1,9 +1,18 @@
+// Styles
+import "@styling/SimilarContent.css";
+
+// React Hooks
 import { useState, useEffect } from "react";
+
+// Routing
 import { useParams } from "react-router-dom";
-import { FetchData } from "../helpers/HelperFunctions";
-import Content from "./Content";
-import "./styling/css/SimilarContent.css";
-import Loading from "./Loading";
+
+// Helpers
+import { FetchData } from "@helpers/HelperFunctions";
+
+// Components
+import Content from "@components/Content";
+import Loading from "@components/Loading";
 
 interface SimilarItem {
   id: number;

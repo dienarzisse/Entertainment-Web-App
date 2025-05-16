@@ -1,11 +1,18 @@
+// Styles
+import "@styling/ImageList.css";
+
+// React & Hooks
 import React, { useState, useMemo } from "react";
+import { useParams } from "react-router-dom";
+
+// External Libraries & Styles
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { FetchData } from "../helpers/HelperFunctions";
-import { useParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import "./styling/css/ImageList.css";
+
+// Helpers
+import { FetchData } from "@helpers/HelperFunctions";
 
 const placeholderImage =
   "https://i.pinimg.com/736x/64/eb/ef/64ebefbbd558d77f1a1e0d01a4e050c1.jpg";

@@ -8,14 +8,15 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": false,
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
-      "assets/*": ["assets/*"],
-      "helpers/*": ["helpers/*"],
-      "components/*": ["components/*"],
-      
+      "@api/*": ["api/*"],
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@helpers/*": ["helpers/*"],
+      "@styling/*": ["components/styling/css/*"]
     }
   },
-  "include": ["src", "src/index.tsx"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

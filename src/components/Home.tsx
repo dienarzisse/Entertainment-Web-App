@@ -1,11 +1,14 @@
+// Styles
+import "@styling/Home.css";
+
+// React
 import React from "react";
-import "./styling/css/Home.css";
-import MediaComponent from "./MediaComponent";
-import {
-  MOVIECATEGORIES,
-  TVCATEGORIES,
-  MEDIA_TYPES,
-} from "../helpers/Constants";
+
+// Components
+import MediaComponent from "@components/MediaComponent";
+
+// Helpers & Constants
+import { MOVIECATEGORIES, TVCATEGORIES, MEDIA_TYPES } from "@helpers/Constants";
 
 const Home: React.FC = () => {
   // Convert categories objects to arrays for iteration

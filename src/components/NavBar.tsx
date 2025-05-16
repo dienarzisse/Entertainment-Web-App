@@ -1,14 +1,20 @@
+// Styles
+import "@styling/NavBar.css";
+
+// React & Routing
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import Logo from "../assets/logo.svg";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import HomeIcon from "../assets/icon-nav-home.svg";
-import MovieNavIcon from "../assets/icon-nav-movies.svg";
-import TVNavIcon from "../assets/icon-nav-tv-series.svg";
-import Avatar from "../assets/image-avatar.png";
+// Assets
+import Logo from "@assets/logo.svg";
+import HomeIcon from "@assets/icon-nav-home.svg";
+import MovieNavIcon from "@assets/icon-nav-movies.svg";
+import TVNavIcon from "@assets/icon-nav-tv-series.svg";
+import Avatar from "@assets/image-avatar.png";
 
-import "./styling/css/NavBar.css";
+// Components / Libraries
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const NavBar: React.FC = () => {
   return (

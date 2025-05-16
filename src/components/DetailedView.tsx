@@ -1,7 +1,12 @@
+// Styles
+import "@styling/DetailedView.css";
+
+// React & Hooks
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./styling/css/DetailedView.css";
-import MediaComponent from "./MediaComponent";
+
+// Components
+import MediaComponent from "@components/MediaComponent";
 
 interface DetailedViewProps {
   mediaType?: string;

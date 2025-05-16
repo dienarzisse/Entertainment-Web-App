@@ -1,9 +1,18 @@
+// Styles
+import "@styling/MediaComponent.css";
+
+// React
 import React, { useState, useEffect } from "react";
+
+// Routing
 import { Link } from "react-router-dom";
-import { APIOPTIONS } from "../api/APIOptions";
-import { StringToTitle } from "../helpers/HelperFunctions";
-import Content from "./Content";
-import "./styling/css/MediaComponent.css";
+
+// API & Helpers
+import { APIOPTIONS } from "@api/APIOptions";
+import { StringToTitle } from "@helpers/HelperFunctions";
+
+// Components
+import Content from "@components/Content";
 
 interface MediaItem {
   id: number;

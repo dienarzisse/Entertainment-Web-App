@@ -1,5 +1,8 @@
+// Hooks
 import { useParams } from "react-router-dom";
-import DetailedView from "./DetailedView";
+
+// Components
+import DetailedView from "@components/DetailedView";
 
 function SearchView() {
   const { keyword, page } = useParams<{ keyword?: string; page?: string }>();

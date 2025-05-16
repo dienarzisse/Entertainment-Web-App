@@ -1,8 +1,18 @@
+// Styles
+import "@styling/SearchBar.css";
+
+// React Hooks
 import { useState, useCallback } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import SearchIcon from "../assets/icon-search.svg";
-import "./styling/css/SearchBar.css";
+
+// Routing
 import { useNavigate } from "react-router-dom";
+
+// Image Lazy Loading
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+// Assets
+import SearchIcon from "@assets/icon-search.svg";
 
 function SearchBar() {
   const [userInput, setUserInput] = useState("");

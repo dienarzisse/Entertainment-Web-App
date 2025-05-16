@@ -1,9 +1,19 @@
+// Styles
+import "@styling/LandingPage.css";
+
+// React
 import React from "react";
+
+// Components
+import LogIn from "@components/LogIn";
+import SignUp from "@components/SignUp";
+
+// Assets
+import Logo from "@assets/logo.svg";
+
+// Effects & Media
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Logo from "../assets/logo.svg";
-import LogIn from "./LogIn";
-import SignUp from "./SignUp";
-import "./styling/css/LandingPage.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface LandingPageProps {
   hasAccount: boolean;

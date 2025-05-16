@@ -1,19 +1,28 @@
-import "./styling/css/App.css";
+// Global styles
+import "@styling/App.css";
+
+// React & Hooks
 import { useState, useEffect, lazy, Suspense } from "react";
+
+// Router
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import NavBar from "./NavBar";
-import SearchBar from "./SearchBar";
-import Loading from "./Loading";
+// Core Components
+import Home from "@components/Home";
+import NavBar from "@components/NavBar";
+import SearchBar from "@components/SearchBar";
+import Loading from "@components/Loading";
+import SignUp from "@components/SignUp";
+import LogIn from "@components/LogIn";
 
-const Home = lazy(() => import("./Home"));
-const DetailedView = lazy(() => import("./DetailedView"));
-const SearchView = lazy(() => import("./SearchView"));
-const Genres = lazy(() => import("./Genres"));
-const GenresList = lazy(() => import("./GenresList"));
-const MediaContentDetailPage = lazy(() => import("./MediaContentDetailPage"));
-const SignUp = lazy(() => import("./SignUp"));
-const LogIn = lazy(() => import("./LogIn"));
+// Lazy-loaded Pages
+const DetailedView = lazy(() => import("@components/DetailedView"));
+const SearchView = lazy(() => import("@components/SearchView"));
+const Genres = lazy(() => import("@components/Genres"));
+const GenresList = lazy(() => import("@components/GenresList"));
+const MediaContentDetailPage = lazy(
+  () => import("@components/MediaContentDetailPage")
+);
 
 function App() {
   const [signedIn, setSignedIn] = useState(() => {

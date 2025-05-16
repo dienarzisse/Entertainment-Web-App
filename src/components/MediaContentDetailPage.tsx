@@ -1,10 +1,13 @@
+// Styles
+import "@styling/MediaContentDetailPage.css";
+
+// React
 import React from "react";
-import "./styling/css/MediaContentDetailPage.css";
-import Credits from "./Credits";
-import SimilarContent from "./SimilarContent";
-import Providers from "./Providers";
-import VideoCarousel from "./VideoCarousel";
-import ContentDetails from "./ContentDetails";
+
+// Components
+import ContentDetails from "@components/ContentDetails";
+import Credits from "@components/Credits";
+import SimilarContent from "@components/SimilarContent";
 
 const MediaContentDetailPage: React.FC = () => {
   // TODO: Implement rating system here
@@ -13,8 +16,6 @@ const MediaContentDetailPage: React.FC = () => {
   return (
     <div className="MediaContentDetailPage">
       <ContentDetails />
-      {/* <VideoCarousel /> */}
-      <Providers />
       <Credits />
       <SimilarContent />
     </div>

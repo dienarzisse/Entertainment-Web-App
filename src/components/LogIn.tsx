@@ -1,7 +1,12 @@
-import "./styling/css/LogIn.css";
+// Styles
+import "@styling/LogIn.css";
+
+// React
 import { useState } from "react";
+
+// Firebase
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../api/firebase";
+import { auth } from "@api/firebase";
 
 interface LogInProps {
   setHasAccount: (value: boolean) => void;

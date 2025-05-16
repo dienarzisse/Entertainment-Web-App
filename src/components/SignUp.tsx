@@ -1,7 +1,13 @@
+// Styles
+import "@styling/SignUp.css";
+
+// React Hooks
 import { useState, FormEvent } from "react";
+
+// Firebase
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../api/firebase";
-import "./styling/css/SignUp.css";
+import { auth } from "@api/firebase";
+
 interface SignUpProps {
   setHasAccount: (value: boolean) => void;
 }

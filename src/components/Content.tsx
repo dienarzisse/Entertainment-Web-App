@@ -1,18 +1,23 @@
-import React, { useState, KeyboardEvent, MouseEvent } from "react";
-import { useInView } from "react-intersection-observer";
-import { MEDIA_TYPES } from "helpers/Constants";
-import MovieIcon from 'assets/icon-category-movie.svg';
-import PlaceholderImage from "assets/placeholder.jpeg";
-import TVIcon from "assets/icon-category-tv.svg";
-import BookmarkEmptyIcon from "assets/icon-bookmark-empty.svg";
-import BookmarkFullIcon from "assets/icon-bookmark-full.svg";
-import { useNavigate } from "react-router-dom";
-import Stars from "react-stars";
-import { RoundStars } from "helpers/HelperFunctions";
-import "./styling/css/Content.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+// Styles
 import "react-lazy-load-image-component/src/effects/blur.css";
+import "@styling/Content.css";
 
+import React, { useState, KeyboardEvent, MouseEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import Stars from "react-stars";
+
+// Helpers
+import { MEDIA_TYPES } from "@helpers/Constants";
+import { RoundStars } from "@helpers/HelperFunctions";
+
+// Assets
+import MovieIcon from "@assets/icon-category-movie.svg";
+import TVIcon from "@assets/icon-category-tv.svg";
+import BookmarkEmptyIcon from "@assets/icon-bookmark-empty.svg";
+import BookmarkFullIcon from "@assets/icon-bookmark-full.svg";
+import PlaceholderImage from "@assets/placeholder.jpeg";
 
 interface ContentProps {
   id: number | string;

@@ -1,5 +1,9 @@
+// Styling
+import "@styling/Loading.css";
+
+// React & Hooks
 import React from "react";
-import "./styling/css/Loading.css";
+
 
 const Loading: React.FC = () => {
   return <div className="spinner" />;

@@ -1,10 +1,19 @@
+// Styles
+import "@styling/Genres.css";
+
+// React & Hooks
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FetchData } from "../helpers/HelperFunctions";
-import { APIOPTIONS } from "../api/APIOptions";
-import GenreButton from "./GenreButton";
-import { PARITY } from "../helpers/Constants";
-import "./styling/css/Genres.css";
+
+// Helpers
+import { FetchData } from "@helpers/HelperFunctions";
+import { PARITY } from "@helpers/Constants";
+
+// API Config
+import { APIOPTIONS } from "@api/APIOptions";
+
+// Components
+import GenreButton from "@components/GenreButton";
 
 interface Genre {
   id: string | number;

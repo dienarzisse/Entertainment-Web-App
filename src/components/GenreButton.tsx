@@ -1,6 +1,9 @@
+// Styles
+import "@styling/GenreButton.css";
+
+// React & Hooks
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./styling/css/GenreButton.css";
 
 interface GenreButtonProps {
   mediaType: string;

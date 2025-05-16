@@ -1,18 +1,27 @@
+// Styles & Effects
+import "@styling/ContentDetails.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+// React & Hooks
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+// Helpers
 import {
   GetLanguageName,
   FetchData,
   RoundStars,
-} from "../helpers/HelperFunctions";
+} from "@helpers/HelperFunctions";
+
+// Components
+import Loading from "@components/Loading";
+import ImageList from "@components/ImageList";
 import Stars from "react-stars";
-import IMDbIcon from "../assets/imdb-logo.svg";
-import HomeIcon from "../assets/home-logo.svg";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import "./styling/css/ContentDetails.css";
-import Loading from "./Loading";
-import ImageList from "./ImageList";
+
+// Assets
+import IMDbIcon from "@assets/imdb-logo.svg";
+import HomeIcon from "@assets/home-logo.svg";
 
 interface Genre {
   id: number;

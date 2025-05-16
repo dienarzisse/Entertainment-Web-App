@@ -1,9 +1,19 @@
+// Styles
+import "@styling/Credits.css"; 
+
+// React & Hooks
 import { useState, useEffect } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useParams } from "react-router-dom";
-import { FetchData } from "../helpers/HelperFunctions";
-import UnknownIcon from "../assets/icon-unknown.svg";
-import "./styling/css/Credits.css";
+
+// Lazy Loading
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+// Helpers
+import { FetchData } from "@helpers/HelperFunctions";
+
+// Assets
+import UnknownIcon from "@assets/icon-unknown.svg";
 
 interface CastMember {
   cast_id: number;
